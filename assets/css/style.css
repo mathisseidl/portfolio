@@ -401,7 +401,7 @@ button:focus-visible,
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
-.cert-card img { width: 104px; height: 104px; object-fit: contain; flex-shrink: 0; }
+.cert-card img { width: 160px; height: 160px; object-fit: contain; flex-shrink: 0; }
 .cert-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
 .cert-status {
   display: inline-block;
