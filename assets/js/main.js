@@ -38,4 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sections.forEach((section) => observer.observe(section));
   }
+
+  const tennisFrame = document.querySelector(".athletics-video iframe");
+  if (tennisFrame && "IntersectionObserver" in window) {
+    const baseSrc = tennisFrame.getAttribute("src");
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            tennisFrame.src = baseSrc + (baseSrc.includes("?") ? "&" : "?") + "autoplay=1&mute=1";
+            videoObserver.unobserve(tennisFrame);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    videoObserver.observe(tennisFrame);
+  }
 });
