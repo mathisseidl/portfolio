@@ -360,24 +360,24 @@ button:focus-visible,
 .card-link.disabled { color: var(--muted); }
 
 .card-featured {
-  background: var(--accent-soft);
-  border-color: var(--accent);
+  background: var(--bg);
+  border: 2px solid #c9a227;
+  box-shadow: 0 2px 8px rgba(180, 140, 20, 0.16), 0 14px 32px rgba(180, 140, 20, 0.22);
+}
+.card-featured:hover {
+  box-shadow: 0 4px 12px rgba(180, 140, 20, 0.2), 0 22px 44px rgba(180, 140, 20, 0.28);
 }
 .card-featured .card-date {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: #c9a227;
+  color: #ffffff;
 }
 .card-featured .card-kicker {
   font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--accent);
+  color: #a9821f;
   margin: 0 0 6px;
-}
-.card-featured .card-body p:not(.card-kicker) { color: var(--ink-soft); }
-.card-featured .tag {
-  background: rgba(255, 255, 255, 0.7);
 }
 
 /* ==========================================================================
