@@ -378,6 +378,7 @@ button:focus-visible,
   color: #a9821f;
   margin: 0 0 6px;
   white-space: nowrap;
+  flex: none;
 }
 
 /* ==========================================================================
