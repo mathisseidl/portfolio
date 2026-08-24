@@ -266,6 +266,9 @@ button:focus-visible,
 .marquee-track a:hover { opacity: 1; }
 .marquee-track img { height: 52px; width: auto; object-fit: contain; }
 .marquee-track img.logo-ebsb { height: 210px; }
+.marquee-track img.logo-bu { height: 130px; }
+.marquee-track img.logo-siemens { height: 104px; }
+.marquee-track img.logo-amazon { height: 78px; }
 
 @keyframes marquee-right {
   from { transform: translateX(-50%); }
