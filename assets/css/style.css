@@ -257,7 +257,7 @@ button:focus-visible,
 .marquee-track {
   display: flex;
   align-items: center;
-  gap: 88px;
+  gap: 140px;
   width: max-content;
   animation: marquee-right 26s linear infinite;
 }
@@ -265,6 +265,7 @@ button:focus-visible,
 .marquee-track a { display: block; flex-shrink: 0; opacity: 0.8; transition: opacity 0.15s ease; }
 .marquee-track a:hover { opacity: 1; }
 .marquee-track img { height: 52px; width: auto; object-fit: contain; }
+.marquee-track img.logo-ebsb { height: 84px; }
 
 @keyframes marquee-right {
   from { transform: translateX(-50%); }
