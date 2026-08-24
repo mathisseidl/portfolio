@@ -268,7 +268,7 @@ button:focus-visible,
 .marquee-track img.logo-ebsb { height: 210px; }
 .marquee-track img.logo-bu { height: 78px; }
 .marquee-track img.logo-siemens { height: 62px; }
-.marquee-track img.logo-amazon { height: 47px; }
+.marquee-track img.logo-amazon { height: 47px; transform: translateY(9px); }
 
 @keyframes marquee-right {
   from { transform: translateX(-50%); }
@@ -418,16 +418,15 @@ button:focus-visible,
 /* ==========================================================================
    Athletics
    ========================================================================== */
+#athletics .section-head { margin-bottom: 20px; }
+
 .athletics-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 48px;
   align-items: center;
 }
-.athletics-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.athletics-photos img { border-radius: var(--radius); box-shadow: var(--shadow); aspect-ratio: 3/4; object-fit: cover; width: 100%; }
-.athletics-photos-single { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
-.athletics-photos-single img { aspect-ratio: 3/4; }
+.athletics-video .video-frame { max-width: none; margin: 0; }
 .stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 .stat-line {
   display: inline-flex;
@@ -441,8 +440,6 @@ button:focus-visible,
 .stat-line strong { font-size: 1.1rem; color: var(--accent); }
 .stat-line span { color: var(--muted); font-weight: 500; font-size: 0.88rem; }
 
-.video-embed { margin-top: 56px; }
-.video-embed .eyebrow { display: block; margin-bottom: 14px; }
 .video-frame {
   position: relative;
   width: 100%;
@@ -462,7 +459,7 @@ button:focus-visible,
 
 @media (max-width: 860px) {
   .athletics-grid { grid-template-columns: 1fr; }
-  .athletics-photos { order: -1; max-width: 420px; margin: 0 auto; }
+  .athletics-video { order: -1; }
 }
 
 /* ==========================================================================
