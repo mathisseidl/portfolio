@@ -370,8 +370,6 @@ button:focus-visible,
 .card-featured:hover {
   box-shadow: 0 4px 12px rgba(180, 140, 20, 0.2), 0 22px 44px rgba(180, 140, 20, 0.28);
 }
-#card-siemens .card-body { transform: translateY(-24px); padding-bottom: 48px; }
-
 .card-featured .card-kicker {
   font-size: 0.74rem;
   font-weight: 700;
@@ -492,7 +490,6 @@ button:focus-visible,
   font-size: 0.92rem;
 }
 .contact-links a:hover { background: rgba(255,255,255,0.16); text-decoration: none; }
-.contact-links img { height: 22px; border-radius: 4px; }
 .footer-bottom { padding-top: 22px; color: #83887f; font-size: 0.85rem; text-align: center; }
 
 /* ==========================================================================
