@@ -15,6 +15,7 @@ const types = {
   ".svg": "image/svg+xml",
   ".pdf": "application/pdf",
   ".zip": "application/zip",
+  ".mp4": "video/mp4",
 };
 
 http
@@ -27,15 +28,35 @@ http
       res.end("Forbidden");
       return;
     }
-    fs.readFile(filePath, (err, data) => {
+    fs.stat(filePath, (err, stat) => {
       if (err) {
         res.writeHead(404);
         res.end("Not found: " + urlPath);
         return;
       }
       const ext = path.extname(filePath).toLowerCase();
-      res.writeHead(200, { "Content-Type": types[ext] || "application/octet-stream" });
-      res.end(data);
+      const contentType = types[ext] || "application/octet-stream";
+      const range = req.headers.range;
+
+      if (range) {
+        const [startStr, endStr] = range.replace(/bytes=/, "").split("-");
+        const start = parseInt(startStr, 10);
+        const end = endStr ? parseInt(endStr, 10) : stat.size - 1;
+        res.writeHead(206, {
+          "Content-Range": `bytes ${start}-${end}/${stat.size}`,
+          "Accept-Ranges": "bytes",
+          "Content-Length": end - start + 1,
+          "Content-Type": contentType,
+        });
+        fs.createReadStream(filePath, { start, end }).pipe(res);
+      } else {
+        res.writeHead(200, {
+          "Content-Type": contentType,
+          "Accept-Ranges": "bytes",
+          "Content-Length": stat.size,
+        });
+        fs.createReadStream(filePath).pipe(res);
+      }
     });
   })
   .listen(port, () => console.log("Serving " + root + " on http://localhost:" + port));

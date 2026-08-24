@@ -230,10 +230,11 @@ button:focus-visible,
   font-weight: 700;
 }
 .hero-text .lede {
-  font-size: 1.2rem;
+  font-size: clamp(1.3rem, 2.3vw, 1.55rem);
+  line-height: 1.5;
   color: var(--ink-soft);
-  max-width: 46ch;
-  margin-bottom: 28px;
+  max-width: 50ch;
+  margin-bottom: 32px;
 }
 
 @media (max-width: 860px) {
@@ -245,17 +246,34 @@ button:focus-visible,
 /* ==========================================================================
    Logo strip
    ========================================================================== */
-.logo-strip { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.logo-strip .container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
+.logo-strip { padding: 44px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
-.logo-strip a { display: block; opacity: 0.75; transition: opacity 0.15s ease; }
-.logo-strip a:hover { opacity: 1; }
-.logo-strip img { height: 32px; width: auto; object-fit: contain; }
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 88px;
+  width: max-content;
+  animation: marquee-right 26s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track a { display: block; flex-shrink: 0; opacity: 0.8; transition: opacity 0.15s ease; }
+.marquee-track a:hover { opacity: 1; }
+.marquee-track img { height: 52px; width: auto; object-fit: contain; }
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
 
 /* ==========================================================================
    About
@@ -340,6 +358,27 @@ button:focus-visible,
 }
 .card-link.disabled { color: var(--muted); }
 
+.card-featured {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.card-featured .card-date {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.card-featured .card-kicker {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+.card-featured .card-body p:not(.card-kicker) { color: var(--ink-soft); }
+.card-featured .tag {
+  background: rgba(255, 255, 255, 0.7);
+}
+
 /* ==========================================================================
    Certifications
    ========================================================================== */
@@ -360,7 +399,7 @@ button:focus-visible,
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
-.cert-card img { width: 68px; height: 68px; object-fit: contain; flex-shrink: 0; }
+.cert-card img { width: 104px; height: 104px; object-fit: contain; flex-shrink: 0; }
 .cert-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
 .cert-status {
   display: inline-block;
@@ -388,6 +427,7 @@ button:focus-visible,
 .athletics-photos img { border-radius: var(--radius); box-shadow: var(--shadow); aspect-ratio: 3/4; object-fit: cover; width: 100%; }
 .athletics-photos-single { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
 .athletics-photos-single img { aspect-ratio: 3/4; }
+.stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 .stat-line {
   display: inline-flex;
   align-items: baseline;
@@ -396,10 +436,28 @@ button:focus-visible,
   padding: 8px 16px;
   border-radius: 999px;
   font-weight: 600;
-  margin-top: 8px;
 }
 .stat-line strong { font-size: 1.1rem; color: var(--accent); }
-.video-link { margin-top: 18px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+.stat-line span { color: var(--muted); font-weight: 500; font-size: 0.88rem; }
+
+.video-embed { margin-top: 56px; }
+.video-embed .eyebrow { display: block; margin-bottom: 14px; }
+.video-frame {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 @media (max-width: 860px) {
   .athletics-grid { grid-template-columns: 1fr; }
@@ -434,7 +492,7 @@ button:focus-visible,
   font-size: 0.92rem;
 }
 .contact-links a:hover { background: rgba(255,255,255,0.16); text-decoration: none; }
-.contact-links img { height: 18px; filter: brightness(0) invert(1); }
+.contact-links img { height: 22px; border-radius: 4px; }
 .footer-bottom { padding-top: 22px; color: #83887f; font-size: 0.85rem; text-align: center; }
 
 /* ==========================================================================
@@ -489,6 +547,16 @@ button:focus-visible,
   font-weight: 600;
   margin-top: 8px;
 }
+
+.video-frame-native {
+  max-width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 16px 0;
+}
+.video-frame-native video { display: block; width: 100%; height: auto; }
+.video-frame-native.portrait { max-width: 380px; margin-left: auto; margin-right: auto; }
 
 .placeholder-note {
   background: var(--bg-alt);

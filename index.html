@@ -52,11 +52,17 @@
   </section>
 
   <section class="logo-strip" aria-label="Companies and school">
-    <div class="container">
-      <a href="https://www.amazon.com/" target="_blank" rel="noopener"><img src="assets/img/logo-amazon.png" alt="Amazon" /></a>
-      <a href="https://www.siemens.com/en-us/" target="_blank" rel="noopener"><img src="assets/img/logo-siemens.png" alt="Siemens" /></a>
-      <a href="https://www.ebsb.de/" target="_blank" rel="noopener"><img src="assets/img/logo-ebsb.jpeg" alt="EBSB" /></a>
-      <a href="https://www.bu.edu/" target="_blank" rel="noopener"><img src="assets/img/logo-bu.png" alt="Boston University" /></a>
+    <div class="marquee">
+      <div class="marquee-track">
+        <a href="https://www.amazon.com/" target="_blank" rel="noopener"><img src="assets/img/logo-amazon.png" alt="Amazon" /></a>
+        <a href="https://www.siemens.com/en-us/" target="_blank" rel="noopener"><img src="assets/img/logo-siemens.png" alt="Siemens" /></a>
+        <a href="https://www.ebsb.de/" target="_blank" rel="noopener"><img src="assets/img/logo-ebsb.jpeg" alt="EBSB" /></a>
+        <a href="https://www.bu.edu/" target="_blank" rel="noopener"><img src="assets/img/logo-bu.png" alt="Boston University" /></a>
+        <a href="https://www.amazon.com/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/img/logo-amazon.png" alt="" /></a>
+        <a href="https://www.siemens.com/en-us/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/img/logo-siemens.png" alt="" /></a>
+        <a href="https://www.ebsb.de/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/img/logo-ebsb.jpeg" alt="" /></a>
+        <a href="https://www.bu.edu/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/img/logo-bu.png" alt="" /></a>
+      </div>
     </div>
   </section>
 
@@ -93,12 +99,13 @@
 
       <div class="projects-grid">
 
-        <article class="card">
+        <article class="card card-featured">
           <div class="card-media">
             <span class="card-date">Summer 2026</span>
             <img src="assets/img/thumb-amazon-internship.jpg" alt="Amazon Internship" />
           </div>
           <div class="card-body">
+            <p class="card-kicker">Internship Experience</p>
             <h3>Amazon Internship</h3>
             <p>Coordinated Robotic division, coded new websites, implemented project and shift-handover trackers, supported in PM of conveyors and robots, performed Permit to Work reviews, and helped in Safety Excellence Audits.</p>
             <div class="tag-list">
@@ -106,6 +113,22 @@
               <span class="tag">Project Management</span><span class="tag">Preventive Maintenance</span>
             </div>
             <span class="card-link disabled">Details coming soon</span>
+          </div>
+        </article>
+
+        <article class="card card-featured">
+          <div class="card-media">
+            <span class="card-date">Summer 2025</span>
+            <img src="assets/img/thumb-siemens.jpeg" alt="Siemens Internship" />
+          </div>
+          <div class="card-body">
+            <p class="card-kicker">Internship Experience</p>
+            <h3>Siemens Internship</h3>
+            <p>Built a digital twin model of a robotic cell, where I established perfect sync between the physical system and its virtual replica through a PLC — bridging the gap between simulation and reality.</p>
+            <div class="tag-list">
+              <span class="tag">CAD</span><span class="tag">PLC Programming</span><span class="tag">Process Simulate</span><span class="tag">Material Flow</span><span class="tag">Robot Kinematics</span>
+            </div>
+            <a class="card-link" href="projects/siemens-digital-twin.html">Learn more &rarr;</a>
           </div>
         </article>
 
@@ -151,21 +174,6 @@
               <span class="tag">Signal Processing</span><span class="tag">Oscilloscope</span><span class="tag">Uncertainty Analysis</span><span class="tag">Sensor Integration</span>
             </div>
             <a class="card-link" href="projects/ultrasonic-sensor.html">Learn more &rarr;</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <span class="card-date">Summer 2025</span>
-            <img src="assets/img/thumb-siemens.jpeg" alt="Siemens Internship" />
-          </div>
-          <div class="card-body">
-            <h3>Siemens Internship</h3>
-            <p>Built a digital twin model of a robotic cell, where I established perfect sync between the physical system and its virtual replica through a PLC — bridging the gap between simulation and reality.</p>
-            <div class="tag-list">
-              <span class="tag">CAD</span><span class="tag">PLC Programming</span><span class="tag">Process Simulate</span><span class="tag">Material Flow</span><span class="tag">Robot Kinematics</span>
-            </div>
-            <a class="card-link" href="projects/siemens-digital-twin.html">Learn more &rarr;</a>
           </div>
         </article>
 
@@ -251,12 +259,28 @@
       </div>
       <div class="athletics-grid">
         <div class="athletics-text">
-          <p>For four years, I trained as a student-athlete at the Mouratoglou Tennis Academy in France, reaching a world ranking of 976 in U18s.</p>
+          <p>For four years, I trained as a student-athlete at the Mouratoglou Tennis Academy in France.</p>
           <p>I carried that passion into college, practicing with the varsity MIT men's tennis team as a freshman and stepping into a Volunteer Assistant Coach role during my sophomore year. I am currently a junior.</p>
-          <div class="stat-line">Universal Tennis Rating: <strong>11.94</strong></div>
+          <div class="stat-row">
+            <div class="stat-line">World Ranking: <strong>976</strong> <span>(U18s)</span></div>
+            <div class="stat-line">Universal Tennis Rating: <strong>11.94</strong></div>
+          </div>
         </div>
         <div class="athletics-photos athletics-photos-single">
           <img src="assets/img/athletics-photo-1.jpg" alt="Mathis Seidl playing tennis" />
+        </div>
+      </div>
+
+      <div class="video-embed">
+        <p class="eyebrow">Watch me play</p>
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/fAI-K5_VQl0"
+            title="Mathis Seidl playing tennis"
+            loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
     </div>
