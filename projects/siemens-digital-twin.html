@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Siemens Digital Twin — Mathis Seidl</title>
+<meta name="description" content="A 1:1 virtual replica of a physical robotic assembly cell using Siemens Process Simulate, synchronized in real time with a Siemens S7-1500 PLC over OPC UA." />
+<meta property="og:title" content="Siemens Digital Twin — Mathis Seidl" />
+<meta property="og:description" content="A 1:1 virtual replica of a physical robotic assembly cell, synchronized in real time with a PLC." />
+<meta property="og:image" content="../assets/img/projects/siemens/hero.jpg" />
+<meta name="theme-color" content="#2c5f4f" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html#top">Mathis Seidl</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html#top">Home</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#certifications">Certifications</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="project-hero">
+    <div class="container">
+      <p class="eyebrow">Summer 2025 · Siemens Internship</p>
+      <h1>Assembly-Robot Cell Digital Twin</h1>
+      <p class="meta">CAD &middot; PLC Programming &middot; Process Simulate &middot; Material Flow &middot; Robot Kinematics</p>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="container">
+      <div class="project-cover">
+        <img src="../assets/img/projects/siemens/hero.jpg" alt="Digital twin of the robotic assembly cell in Process Simulate" />
+      </div>
+
+      <section class="project-section">
+        <p class="eyebrow">Digital Twin</p>
+        <h2>Mirroring reality in a virtual simulation</h2>
+        <p>The first thing I worked on was building a 1:1 virtual replica of the physical robotic assembly cell using Siemens Process Simulate. The system consists of three robot manipulators, two conveyor belts, a TV, a work station, a Siemens PLC, two green chips, two chip holders, and four proximity sensors.</p>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Kinematics</p>
+        <h2>Defining the robot's movement</h2>
+        <p>We used the uArm Swift Pro robot manipulator which didn't have pre-built kinematics in the Process Simulate software. Therefore, I had to define its full kinematic chain from scratch. This meant defining every joint and link of the arm, frames, axes of rotation, link dependencies, and limits of rotation so that the virtual robot moves exactly like its real-world counterpart. I did this for all three robot arms, and also defined the kinematics for two different grippers — a grip and a vacuum.</p>
+        <img src="../assets/img/projects/siemens/kinematics.jpg" alt="Robot kinematics definition in Process Simulate" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">PLC</p>
+        <h2>Programming the logic in TIA Portal</h2>
+        <p>The brain of the assembly cell is a Siemens S7-1500 PLC programmed in TIA Portal. After mapping the PLC hardware input and output terminal addresses with the software's PLC tags, I redefined the PLC ladder logic that controls the system's operation — when each robot starts, when the conveyors run, and how the sensors trigger each step of the sequence.</p>
+        <img src="../assets/img/projects/siemens/plc-screenshot.png" alt="TIA Portal PLC ladder logic screenshot" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Connected Signals</p>
+        <h2>One signal name, two worlds in sync</h2>
+        <p>To connect the physical and virtual stations, every signal in Process Simulate was given the exact same name and address as its corresponding PLC tag in TIA Portal. This means that when a proximity sensor gets triggered on the real conveyor belt, the same event is triggered in the simulation — the virtual robots and conveyors respond in real time through an OPC UA connection, running the same operations as the physical cell in sync.</p>
+        <div class="figure-row">
+          <img src="../assets/img/projects/siemens/connected-signals.png" alt="Connected signals diagram" />
+          <img src="../assets/img/projects/siemens/cell-photo.jpeg" alt="Physical robotic assembly cell" />
+        </div>
+      </section>
+
+      <a class="project-nav-back" href="../index.html#projects">&larr; Return to Projects</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <h2>Let's talk</h2>
+        <p>Open to conversations about robotics, automation, and internships.</p>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/mathisseidl/" target="_blank" rel="noopener">
+          <img src="../assets/img/logo-linkedin.png" alt="" /> LinkedIn
+        </a>
+        <a href="mailto:mathis.seidl@icloud.com">mathis.seidl@icloud.com</a>
+        <a href="tel:+16172560166">+1 (617) 256-0166</a>
+      </div>
+    </div>
+    <div class="footer-bottom">Copyright &copy; 2026 Mathis Seidl</div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

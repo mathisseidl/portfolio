@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cart - Beam Balancing — Mathis Seidl</title>
+<meta name="description" content="A cart that transports a 1-foot vertical beam over variable distances of 5-10 feet without toppling it, validated with SolidWorks motion simulation." />
+<meta property="og:title" content="Cart - Beam Balancing — Mathis Seidl" />
+<meta property="og:description" content="A cart that transports a 1-foot vertical beam over variable distances without toppling it." />
+<meta property="og:image" content="../assets/img/projects/cart/hero.png" />
+<meta name="theme-color" content="#2c5f4f" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html#top">Mathis Seidl</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html#top">Home</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#certifications">Certifications</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="project-hero">
+    <div class="container">
+      <p class="eyebrow">Spring 2026 · Dynamics</p>
+      <h1>Cart - Beam Balancing</h1>
+      <p class="meta">CAD &middot; 3D Printing &middot; C++ &middot; Wiring &middot; Assembling</p>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="container">
+      <div class="project-cover">
+        <img src="../assets/img/projects/cart/hero.png" alt="Cart traveling with beam balanced on top" />
+      </div>
+
+      <section class="project-section">
+        <p class="eyebrow">Objective</p>
+        <h2>Cart traveling 9 feet back and forth in 17.8 seconds with the beam staying perfectly stable</h2>
+        <p>The goal of this project was to design a cart capable of transporting a 1-foot vertical aluminum bar across a variable distance of 5 to 10 feet back and forth without it toppling. The bar was placed on a horizontal platform, supported at its bottom face only. No glues, fasteners, or side supports were allowed — just physics.</p>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Simulation</p>
+        <h2>Modeling tipping acceleration in SolidWorks</h2>
+        <p>The ultimate objective was to minimize the time required to transport the bar. To do so, we first simulated multiple design concepts in SolidWorks. Initially, we simulated the multibody system without wheels to get a sense of the maximum acceleration the cart could handle. Basic rectangular shapes were used for the track, cart, and prisms, assembled with one degree of freedom that dropped to zero once a motor was introduced.</p>
+        <p>Using the motion analysis feature in SolidWorks, we generated both an acceleration plot and a reaction force plot to analyze the system's behavior.</p>
+        <div class="figure-row">
+          <img src="../assets/img/projects/cart/plot-acceleration.jpg" alt="Acceleration plot from SolidWorks motion analysis" />
+          <img src="../assets/img/projects/cart/plot-force.jpg" alt="Reaction force plot from SolidWorks motion analysis" />
+        </div>
+        <p>From the reaction force plot, the moment the reaction force dropped to zero marked exactly when the prism's tipping point lost contact with the cart. By analyzing the acceleration plot, at the exact time when the reaction force reached 0N, we found our value to be 0.8 m/s&sup2; at 0.75 seconds.</p>
+        <p>To make sure these results actually made sense, we compared them to the theoretical calculations that we got from a Free-Body Diagram. By solving for when the net moment about the tipping point equals zero, we got a tipping acceleration of 0.8175 m/s&sup2;. The simulated value aligns within 2% of the theoretical value, validating the accuracy of the model.</p>
+        <p>The simulation was then repeated with the prism tilted at 45 degrees, which shifted the base distribution along the tilting axis and noticeably changed the results, giving a higher maximum acceleration of 1.152 m/s&sup2; at 0.96 seconds — confirming that the angled orientation allowed the cart to move faster before tipping became a concern.</p>
+        <p>We then introduced wheels into the simulation, with each group member modeling a different size ranging from 1 to 4 inches. The goal was to bring the reaction force of the bar as close to zero as possible, which larger wheels achieved well. However, we opted for a more conservative choice to avoid the jerk that comes with bigger wheels. Taking everything into account, we went with the rotated prism and 3 inch wheels for our final design, giving us the best balance between speed and stability for transporting the bar.</p>
+        <div class="resource-links">
+          <a class="btn btn-outline" href="../assets/files/Cart-SolidWorks.zip">SolidWorks Zip File</a>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Build</p>
+        <h2>From simulation to prototype</h2>
+        <div class="figure-row">
+          <img src="../assets/img/projects/cart/cart-top.jpg" alt="Top of the finished cart" />
+          <img src="../assets/img/projects/cart/cart-bottom.jpg" alt="Underside of the finished cart" />
+        </div>
+        <p class="project-figure-caption" style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:-8px;">The left figure shows the top of the cart and the right shows the underside.</p>
+        <p>Once we were happy with the simulation, we moved on to building the actual prototype. The wheels, adapters, and motor holder were all 3D printed, the wood body was laser cut to size, and everything was fastened together using screws, washers, and nuts, with the wheels glued directly to the axle for extra security.</p>
+        <p>Assembly came with a few unexpected challenges. One wheel wasn't making full contact with the ground due to a warped body, so we hot glued a flat strip around the short side of the wheel to slightly increase its diameter and level things out. We also noticed the axle not connected to the motor was shifting side to side during motion, which we fixed by wrapping electrical tape around it to the approximate width we needed — a simple fix that kept the axle stable while adding minimal friction.</p>
+        <p>For our trials, the prism was placed within a diamond of pencil marks, and white tape was used to keep the wiring tidy and out of the way. For the 9 foot trial, we added rubber bands to the front two wheels for better traction and powered the cart using a 12V external power supply.</p>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Code</p>
+        <h2>Trapezoidal velocity profile</h2>
+        <p>The Arduino code was built around a trapezoidal velocity profile, meaning the cart ramped up to speed, held it steady, then slowed back down in a controlled manner. We used buffer times of 0.75 seconds for both the ramp up and ramp down phases, and included a two second pause before reversing to give the prism time to stabilize. Shorter wait times technically worked, but our success rate was highest at two seconds so we prioritized keeping the prism upright over shaving off a few seconds.</p>
+        <p>The other key decision in our code was the PWM value, which controls motor speed by toggling the signal on and off. Although our theoretical tipping acceleration gave us an upper bound, real-world factors like mechanical constraints and environmental conditions meant we had to be more conservative. After testing, we landed on a PWM of 175, which turned out to be the sweet spot — higher values kept the cart moving well but caused the prism to topple, highlighting the important distinction between what the cart can handle and what the prism can.</p>
+        <div class="resource-links">
+          <a class="btn btn-outline" href="https://github.com/mathisseidl/Motor-controlled-cart.git" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </section>
+
+      <a class="project-nav-back" href="../index.html#projects">&larr; Return to Projects</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <h2>Let's talk</h2>
+        <p>Open to conversations about robotics, automation, and internships.</p>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/mathisseidl/" target="_blank" rel="noopener">
+          <img src="../assets/img/logo-linkedin.png" alt="" /> LinkedIn
+        </a>
+        <a href="mailto:mathis.seidl@icloud.com">mathis.seidl@icloud.com</a>
+        <a href="tel:+16172560166">+1 (617) 256-0166</a>
+      </div>
+    </div>
+    <div class="footer-bottom">Copyright &copy; 2026 Mathis Seidl</div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

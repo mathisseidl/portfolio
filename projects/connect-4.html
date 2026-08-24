@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Autonomous Connect 4 — Mathis Seidl</title>
+<meta name="description" content="An autonomous Connect-4 playing device inspired by the mechanism of a 3D printer, controlled through G-code from MATLAB." />
+<meta property="og:title" content="Autonomous Connect 4 — Mathis Seidl" />
+<meta property="og:description" content="An autonomous Connect-4 playing device inspired by the mechanism of a 3D printer." />
+<meta property="og:image" content="../assets/img/projects/connect4/hero.jpg" />
+<meta name="theme-color" content="#2c5f4f" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html#top">Mathis Seidl</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html#top">Home</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#certifications">Certifications</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="project-hero">
+    <div class="container">
+      <p class="eyebrow">Spring 2026 · Mechatronics</p>
+      <h1>Autonomous Connect 4</h1>
+      <p class="meta">CAD &middot; 3D Printing &middot; G-code &middot; Belt Drive Design &middot; Stepper Motor Control</p>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="container">
+      <div class="project-cover">
+        <img src="../assets/img/projects/connect4/hero.jpg" alt="Autonomous Connect 4 device" />
+      </div>
+
+      <section class="project-section">
+        <p class="eyebrow">Objective</p>
+        <h2>Project objective &amp; task</h2>
+        <p>This project presents an autonomous Connect-4 playing device, inspired by the mechanism of a 3D printer. The system operates with 3 degrees of freedom across the X, Y, and Z axes. The concept reimagines the classic game of Connect-4 in an automated format, where the only required human interaction is entering a desired column number into the MATLAB command window.</p>
+        <p>We were tasked with building a 2.5 DOF system capable of performing a task of our choice, while being compact and lightweight enough to fit in a backpack. The system also needed to be fully or partially disassembled for transport and reassembled by a single person in under 10 minutes.</p>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">CAD</p>
+        <h2>Design overview</h2>
+        <p>As an initial design step, I developed a full CAD assembly with the goal of making the system as compact as possible. Modeling the design virtually before assembling saved our team significant time and money. The assembly primarily features motor mounts for three NEMA 17 and one NEMA 14 stepper motor, the end effector, a base housing that stores the 42 game chips, the Connect 4 board, and five aluminum extrusion beams.</p>
+        <p>The most challenging aspect was designing the carriages that slide along the beams. Since the system is driven by belt-driven linear actuators, the carriages needed to anchor one end of the belt while allowing the other end to pass through freely. Additionally, the carriages had to precisely house the stepper motors and the aluminum beams. Any slight dimensioning error would introduce misalignment.</p>
+        <img src="../assets/img/projects/connect4/cad-isometric.jpg" alt="Isometric view of the final Connect 4 assembly CAD" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
+        <div class="resource-links">
+          <a class="btn btn-outline" href="../assets/files/Connect4-SolidWorks.zip">SolidWorks Zip File</a>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Z-Axis</p>
+        <h2>End effector</h2>
+        <p>Our Z-axis end effector is rack-and-pinion inspired, responsible for picking up and dropping the game chips. The pinion is press-fitted onto the shaft of the NEMA 14 stepper motor and drives the rack linearly. A magnet mounted on the front of the rack collects the chips, which we glued with metal pieces for magnetic adhesion.</p>
+        <p>The chip release mechanism required significant troubleshooting. Our initial approach used a linear actuator to collide the chip against a back wall upon power-off, releasing it into the board — that was unsuccessful, so we attached a screw onto the magnet to lower the magnetic field, but the chip still wouldn't fall off. Ultimately, we realized we could just disregard the linear actuator completely and place the chip into the slit enough so that if you reverse the rack, the chip naturally falls in.</p>
+        <img src="../assets/img/projects/connect4/end-effector.jpg" alt="Rack-and-pinion end effector" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Electronics</p>
+        <h2>Smart wiring</h2>
+        <p>We chose the MKS Base V1.6, produced by Makerbase, to power our system. This board integrates an Arduino Mega microcontroller and five stepper motor drivers onto a single PCB, keeping our wiring organized and compact. We connected our four NEMA stepper motors directly to the motor driver pins and powered the entire system with a 12V external power supply.</p>
+        <img src="../assets/img/projects/connect4/circuitry.jpg" alt="Connect 4 device wiring and electronics" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Code</p>
+        <h2>Skeleton code</h2>
+        <p>The code is written in MATLAB and communicates with the MKS board using G-code commands. A predefined array of 42 chip coordinates guides the magnet to each chip, which it picks up using sequential X, Y, and Z movements. The user is then prompted to input a target column, and the system moves the chip to the wanted column. This loop repeats for all 42 chips or until the user quits.</p>
+        <img src="../assets/img/projects/connect4/code-screenshot.png" alt="MATLAB skeleton code screenshot" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
+        <div class="resource-links">
+          <a class="btn btn-outline" href="https://github.com/mathisseidl/Connect-4-game/tree/main" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Results</p>
+        <h2>Smart wiring, solid performance</h2>
+        <p>Overall the system performed well. The motors ran smoothly, the belts held up without any issues, and the carriages slid cleanly along the beams thanks to careful dimensioning during the design phase. Electrically the system ran flawlessly as long as the motors stayed within a certain speed threshold — each cycle ran between 10 and 20 seconds from pickup to drop off. The only area for improvement was chip accuracy, which sat at 85% per game. Chips would slightly twist in their holder, meaning the magnet never grabbed the metal piece from the exact same spot, occasionally throwing off the drop.</p>
+        <img src="../assets/img/projects/connect4/group-photo.jpg" alt="Team photo with the finished Connect 4 device" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
+      </section>
+
+      <a class="project-nav-back" href="../index.html#projects">&larr; Return to Projects</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <h2>Let's talk</h2>
+        <p>Open to conversations about robotics, automation, and internships.</p>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/mathisseidl/" target="_blank" rel="noopener">
+          <img src="../assets/img/logo-linkedin.png" alt="" /> LinkedIn
+        </a>
+        <a href="mailto:mathis.seidl@icloud.com">mathis.seidl@icloud.com</a>
+        <a href="tel:+16172560166">+1 (617) 256-0166</a>
+      </div>
+    </div>
+    <div class="footer-bottom">Copyright &copy; 2026 Mathis Seidl</div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

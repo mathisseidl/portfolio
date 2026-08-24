@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Warehouse Robot — Mathis Seidl</title>
+<meta name="description" content="A 6-DOF robotic manipulator with gripper feedback and force sensing that sorts boxes by size, designed, built, and programmed from scratch on a $100 budget." />
+<meta property="og:title" content="Warehouse Robot — Mathis Seidl" />
+<meta property="og:description" content="A 6-DOF robotic manipulator with gripper feedback and force sensing that sorts boxes by size." />
+<meta property="og:image" content="../assets/img/projects/warehouse-robot/hero.jpg" />
+<meta name="theme-color" content="#2c5f4f" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html#top">Mathis Seidl</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html#top">Home</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#certifications">Certifications</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="project-hero">
+    <div class="container">
+      <p class="eyebrow">Spring 2026 · Robotics</p>
+      <h1>Warehouse Robot</h1>
+      <p class="meta">MATLAB &middot; Robot Kinematics &middot; Denavit-Hartenberg &middot; CAD</p>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="container">
+      <div class="project-cover">
+        <img src="../assets/img/projects/warehouse-robot/hero.jpg" alt="The warehouse sorting robot arm" />
+      </div>
+
+      <section class="project-section">
+        <p class="eyebrow">Objective</p>
+        <h2>Mailroom sorting robot</h2>
+        <p>We built a 6-DOF robotic arm that picks up three different sized boxes that should resemble packages. The arm measures the packages' size, and drops them into predefined location based on the boxes' size it detects. The robot runs on a prismatic rail joint plus five revolute joints, giving it reach and mobility. The whole system was designed, built, and programmed from scratch on a $100 budget.</p>
+        <figure class="project-figure">
+          <img src="../assets/img/projects/warehouse-robot/objective-diagram.png" alt="Link length diagram: y1=13cm, z2=3cm, x3=18cm, x4=15cm, y5=9cm, z6=12.5cm" />
+          <figcaption>y1=13cm &middot; z2=3cm &middot; x3=18cm &middot; x4=15cm &middot; y5=9cm &middot; z6=12.5cm</figcaption>
+        </figure>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Design</p>
+        <h2>DH Parameters &amp; CAD</h2>
+        <p>We modeled the robot using modified Denavit-Hartenberg parameters, assigning a coordinate frame to each of the six joints. Each link length was carefully chosen to work within our budget and keep the arm stable under load. After selecting 20 Nm torque servos for our joints, we revised the dimensions so the robot can reliably handle packages up to 200 g and ended up with link lengths of 18cm, 15cm, 9cm, and an end effector of 12.5cm. After creating the frame sketch, I used SolidWorks to model the links and 3D printed those on a Bambu 3D printer.</p>
+        <div class="figure-row">
+          <img src="../assets/img/projects/warehouse-robot/design-diagram-1.png" alt="DH parameter coordinate frames diagram" />
+          <img src="../assets/img/projects/warehouse-robot/design-diagram-2.png" alt="Robot arm CAD model" />
+        </div>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Hardware</p>
+        <h2>Motors &amp; Microcontroller</h2>
+        <p>Five servo motors drive the revolute joints, one of them with a built-in closed-loop PID controller used on the gripper to track its movement. A NEMA 17 stepper motor moves the entire arm along the prismatic rail. An ESP32 microcontroller ties everything together, sending PWM signals to every joint simultaneously. To make motion look natural, we implemented sinusoidal easing so the arm accelerates and decelerates smoothly on every move. All logic — from picking to sorting to returning home — runs autonomously once the trigger button is pressed. The only human interaction is giving the gripper the package and giving support to the servo that carries the largest load because it got worn down from all the testing.</p>
+        <div class="figure-row">
+          <img src="../assets/img/projects/warehouse-robot/servo-diagram.png" alt="Servo motor diagram" />
+          <img src="../assets/img/projects/warehouse-robot/hardware-photo.png" alt="Hardware assembly photo" />
+        </div>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Sensing</p>
+        <h2>Force &amp; Angle feedback</h2>
+        <p>When the gripper closes around the package, a force sensor on the finger detects the moment of contact. The ESP32 reads that signal and immediately stops the gripper which locks the box in place. Once the gripper stops closing, a built-in potentiometer in the gripper's motor reads the gripper's angle. A simple formula converts that angle into a width in centimeters, revealing the package size. The code then uses that measurement to decide which of the three pre-defined locations to deliver to.</p>
+        <div class="figure-row">
+          <img src="../assets/img/projects/warehouse-robot/fsr-diagram.png" alt="Force sensitive resistor diagram" />
+          <img src="../assets/img/projects/warehouse-robot/sensing-diagram.png" alt="Sensing system diagram" />
+        </div>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Kinematics</p>
+        <h2>Simulating the Robot</h2>
+        <p>We used MATLAB's Robotics Toolbox throughout the testing phase to model and validate the arm's motion. We solved inverse kinematics at each pick and place location, which gave us the exact joint angles to hardcode into the ESP32 through C++. Trajectories were planned in joint space to ensure the arm never passed through a singularity. We identified three singularity conditions, the most intuitive being when two links align in a straight line, effectively eliminating the joint between them. Finally, our joint limits were set to 0-180&deg; for all servos, 270&deg; for the servo responsible for the rack and pinion gripper, and 0-0.5 m for the prismatic rail.</p>
+        <figure class="project-figure">
+          <img src="../assets/img/projects/warehouse-robot/kinematics-diagram.png" alt="MATLAB kinematics simulation" />
+        </figure>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Results</p>
+        <h2>80% success rate &amp; lessons learned</h2>
+        <p>The robot successfully picked and placed packages 4 out of every 5 attempts in live testing. The main failure mode was packages slipping from the gripper, caused by gearbox wear on a joint sitting right on top of the base that introduced jitter throughout the arm. Also, unsecured wiring and a small base that tipped under extreme reaches were also limiting factors. With more budget, stronger actuators and a wider two-rail base frame would directly fix those issues. In future iterations we would also add a camera for QR code scanning, to be able to sort between product types not just package size.</p>
+        <div class="figure-row">
+          <img src="../assets/img/projects/warehouse-robot/build-photo.jpg" alt="Completed robot during testing" />
+          <img src="../assets/img/projects/warehouse-robot/team-photo.jpg" alt="Team photo with the robot" />
+        </div>
+      </section>
+
+      <a class="project-nav-back" href="../index.html#projects">&larr; Return to Projects</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <h2>Let's talk</h2>
+        <p>Open to conversations about robotics, automation, and internships.</p>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/mathisseidl/" target="_blank" rel="noopener">
+          <img src="../assets/img/logo-linkedin.png" alt="" /> LinkedIn
+        </a>
+        <a href="mailto:mathis.seidl@icloud.com">mathis.seidl@icloud.com</a>
+        <a href="tel:+16172560166">+1 (617) 256-0166</a>
+      </div>
+    </div>
+    <div class="footer-bottom">Copyright &copy; 2026 Mathis Seidl</div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

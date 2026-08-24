@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Skittles Color-Sorting Device — Mathis Seidl</title>
+<meta name="description" content="A portable, fully 3D printed candy color sorting device with Braille labeling, achieving 99% sorting accuracy across 100 trials." />
+<meta property="og:title" content="Skittles Color-Sorting Device — Mathis Seidl" />
+<meta property="og:description" content="A portable, fully 3D printed candy color sorting device with Braille labeling for accessibility." />
+<meta property="og:image" content="../assets/img/projects/color-sorter/hero.png" />
+<meta name="theme-color" content="#2c5f4f" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html#top">Mathis Seidl</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html#top">Home</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#certifications">Certifications</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="project-hero">
+    <div class="container">
+      <p class="eyebrow">Spring 2025 · Accessible Design</p>
+      <h1>Skittles Color-Sorting Device</h1>
+      <p class="meta">CAD &middot; C++ &middot; Wiring &middot; Assembling &middot; Team Work</p>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="container">
+      <div class="project-cover">
+        <img src="../assets/img/projects/color-sorter/hero.png" alt="The Skittles color-sorting device" />
+      </div>
+
+      <section class="project-section">
+        <p class="eyebrow">The Device</p>
+        <h2>A sorter built for everyone</h2>
+        <p>This project was a portable, fully 3D printed candy color sorting device that sorts Skittles by color into five labeled compartments. The device was built with accessibility in mind: each compartment is marked with both a large engraved letter and a Braille label, making it usable for people who are color blind or visually impaired. The entire housing is powered by batteries with no external power source needed and is lightweight (1.2kg), making it very portable.</p>
+        <div class="figure-row">
+          <img src="../assets/img/projects/color-sorter/device-photo-1.jpeg" alt="Skittles color sorter device photo" />
+          <img src="../assets/img/projects/color-sorter/device-photo-2.jpeg" alt="Skittles color sorter compartments" />
+        </div>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">CAD &amp; 3D Printing</p>
+        <h2>Built from the ground up</h2>
+        <p>Every component of the device was designed from scratch in SolidWorks and 3D printed in PLA material. The 18 custom parts include the funnel, rotating disc, ramp, compartment storage, sensor mounts, servo supports, and housing for the Arduino and batteries. Each part was dimensioned precisely to fit Skittles and integrate cleanly with the motors and wires.</p>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Code &amp; Detection Algorithm</p>
+        <h2>The logic behind every sort</h2>
+        <p>The Arduino code reads raw RGB values from the TCS3200 color sensor and converts them into normalized ratios, which are then compared against calibrated reference values for each of the five Skittle colors using a nearest-neighbor algorithm. To eliminate false readings, the system requires two consecutive matching detections before confirming a color and moving the ramp servo to the correct position.</p>
+        <img src="../assets/img/projects/color-sorter/code-screenshot.png" alt="Color detection code screenshot" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
+        <div class="resource-links">
+          <a class="btn btn-outline" href="https://github.com/mathisseidl/Skittles-Color-Sorting-Device.git" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <p class="eyebrow">Results</p>
+        <h2>Every objective met</h2>
+        <p>We set five key objectives at the start of the project and hit every single one. The device achieved 99% sorting accuracy and 100% color detection across 100 trials, sorted each candy in under three seconds on average, and came in at just 1.26 kilograms.</p>
+      </section>
+
+      <a class="project-nav-back" href="../index.html#projects">&larr; Return to Projects</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <h2>Let's talk</h2>
+        <p>Open to conversations about robotics, automation, and internships.</p>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/mathisseidl/" target="_blank" rel="noopener">
+          <img src="../assets/img/logo-linkedin.png" alt="" /> LinkedIn
+        </a>
+        <a href="mailto:mathis.seidl@icloud.com">mathis.seidl@icloud.com</a>
+        <a href="tel:+16172560166">+1 (617) 256-0166</a>
+      </div>
+    </div>
+    <div class="footer-bottom">Copyright &copy; 2026 Mathis Seidl</div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
