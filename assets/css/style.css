@@ -339,6 +339,62 @@ button:focus-visible,
 }
 
 /* ==========================================================================
+   Languages (About, above the journey timeline)
+   One grid row per language -- flag, name, six dots -- so each set of dots
+   stays on its own language's line and the three columns align down the
+   list. Filled dots use the timeline's own green so this block and the
+   journey bar below it belong to the same family; the empty dot is a shade
+   darker than that bar's track, which goes too faint to count as a circle.
+   ========================================================================== */
+.lang-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+.lang-item {
+  display: grid;
+  grid-template-columns: 24px 104px auto;
+  align-items: center;
+  gap: 0 16px;
+}
+.lang-flag {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  /* The French and US flags are mostly white and would otherwise bleed into
+     the page. A border, not an inset shadow -- replaced content paints over
+     an inset shadow and would hide it. */
+  border: 1px solid rgba(22, 25, 28, 0.16);
+}
+.lang-name {
+  font-family: var(--font-head);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.lang-meter {
+  display: inline-flex;
+  /* Grid blockifies inline-flex, so without this the meter box stretches
+     across the whole column instead of hugging its dots. */
+  justify-self: start;
+  align-items: center;
+  gap: 8px;
+}
+.lang-meter i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #d6d2c6;
+}
+.lang-meter i.is-on { background: #43836d; }
+
+@media (max-width: 860px) {
+  .lang-item { grid-template-columns: 24px 92px auto; gap: 0 12px; }
+}
+
+/* ==========================================================================
    Education timeline (bottom of About)
    Horizontal 2019 -> May 2027. Segment widths are declared as --w in the
    markup and the same scale is used to place the live "today" light.
@@ -475,7 +531,7 @@ button:focus-visible,
   position: relative;
   height: var(--tl-h);
   border-radius: 999px;
-  background: #e6e3da;
+  background: #d6d2c6;
 }
 
 /* hollow end markers */
