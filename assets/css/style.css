@@ -546,13 +546,6 @@ button:focus-visible,
   margin-left: -0.5px;
   background: #a7aca5;
 }
-/* the two days that bracket the Amazon internship: same line as every other
-   tick, in black so the pair reads as one span */
-.tl-ticks span.tick-amz {
-  background: var(--ink);
-  z-index: 10;
-}
-
 /* --- the live "today" light --- */
 .tl-now {
   position: absolute;
