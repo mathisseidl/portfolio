@@ -345,7 +345,7 @@ button:focus-visible,
    ========================================================================== */
 /* "My Journey" supplies the gap above the bar. One body line is ~26px
    (1.02rem x 1.6), so these are half a line and a full line. */
-.subhead-journey { margin-top: 69px; }
+.subhead-journey { margin-top: 56px; }
 /* 48 = the subhead's own 22px bottom margin (they collapse) + one line */
 .subhead-journey + .timeline-wrap { margin-top: 48px; }
 
