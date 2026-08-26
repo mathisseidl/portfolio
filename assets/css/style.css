@@ -343,8 +343,11 @@ button:focus-visible,
    Horizontal 2019 -> May 2027. Segment widths are declared as --w in the
    markup and the same scale is used to place the live "today" light.
    ========================================================================== */
-/* the "My Journey" sub-heading supplies the gap when it precedes the bar */
-.subhead + .timeline-wrap { margin-top: 0; }
+/* "My Journey" supplies the gap above the bar. One body line is ~26px
+   (1.02rem x 1.6), so these are half a line and a full line. */
+.subhead-journey { margin-top: 69px; }
+/* 48 = the subhead's own 22px bottom margin (they collapse) + one line */
+.subhead-journey + .timeline-wrap { margin-top: 48px; }
 
 .timeline-wrap {
   margin-top: 68px;
