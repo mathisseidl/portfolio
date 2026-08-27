@@ -346,6 +346,11 @@ button:focus-visible,
    journey bar below it belong to the same family; the empty dot is a shade
    darker than that bar's track, which goes too faint to count as a circle.
    ========================================================================== */
+/* The Languages spoken heading — and, with it, everything below through the
+   journey timeline — sits one body line (~26px) higher than the shared
+   .subhead-spaced gap used over in Engineering Work. */
+#about .subhead-spaced { margin-top: 30px; }
+
 .lang-list {
   list-style: none;
   margin: 0;
@@ -404,6 +409,15 @@ button:focus-visible,
 .subhead-journey { margin-top: 56px; }
 /* 48 = the subhead's own 22px bottom margin (they collapse) + one line */
 .subhead-journey + .timeline-wrap { margin-top: 48px; }
+
+
+/* About ends on the timeline's school row, which already reads as trailing
+   space. Trim 1.5 lines (39px) off the section's 96px bottom padding so the
+   run of white under "My Journey" does not double up. Left alone below 640px,
+   where the section padding is already only 64px. */
+@media (min-width: 641px) {
+  #about { padding-bottom: 57px; }
+}
 
 .timeline-wrap {
   margin-top: 68px;
