@@ -1061,8 +1061,27 @@ button:focus-visible,
 .project-section p { color: var(--ink-soft); margin: 0 0 1.1em; font-size: 1.03rem; }
 .project-section p:last-child { margin-bottom: 0; }
 
-.project-figure { margin: 24px 0; }
+/* Standalone shots used to run the whole column -- twice the width of the
+   closing project image, which made them read as huge next to it. Cap them
+   to the same 50% and centre them so every single image on the page lands
+   at one size. Paired .figure-row shots already sit near that width and are
+   left alone. Both release to full width below 640px. */
+.project-section > img,
+.project-figure {
+  display: block;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.project-section > img { width: 100%; }
+
+.project-figure { margin: 24px auto; }
 .project-figure img { border-radius: var(--radius-sm); box-shadow: var(--shadow); width: 100%; }
+
+@media (max-width: 640px) {
+  .project-section > img,
+  .project-figure { max-width: 100%; }
+}
 .project-figure figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; text-align: center; }
 
 .figure-row {
