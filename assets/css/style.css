@@ -1037,13 +1037,23 @@ button:focus-visible,
 .project-body { padding: 56px 0 96px; }
 .project-body .container { max-width: 860px; }
 
+/* The cover now closes the page instead of opening it, so it runs at half
+   width and centered -- a closing shot rather than a banner. Released back to
+   full width on narrow screens, where half a phone viewport is too small to
+   read. */
 .project-cover {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  margin-bottom: 48px;
+  max-width: 50%;
+  /* No bottom margin -- the wrapping .project-section supplies the 48px. */
+  margin: 0 auto;
 }
-.project-cover img { width: 100%; }
+.project-cover img { width: 100%; display: block; }
+
+@media (max-width: 640px) {
+  .project-cover { max-width: 100%; }
+}
 
 .project-section { margin-bottom: 48px; }
 .project-section .eyebrow { margin-bottom: 6px; }

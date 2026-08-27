@@ -108,4 +108,20 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     videoObserver.observe(tennisFrame);
   }
+
+  /* Project demo videos are marked autoplay muted, but the attribute alone
+     does not fire in every engine (and never when the tab loads in the
+     background). Nudge play() once the data is in, and again when the tab
+     comes back to the front. */
+  document.querySelectorAll("video[autoplay]").forEach((video) => {
+    const tryPlay = () => {
+      const played = video.play();
+      if (played && played.catch) played.catch(() => {});
+    };
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay, { once: true });
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && video.paused) tryPlay();
+    });
+  });
 });
