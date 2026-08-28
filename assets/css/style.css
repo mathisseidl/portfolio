@@ -1065,16 +1065,16 @@ button:focus-visible,
 }
 
 .project-section h2 {
-  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
-  line-height: 1.22;
+  font-size: clamp(1.12rem, 1.5vw, 1.25rem);
+  line-height: 1.35;
   margin-bottom: 18px;
 }
 
 .project-section .eyebrow {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: clamp(1.4rem, 2.2vw, 1.6rem);
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
   color: var(--muted);
