@@ -23,6 +23,7 @@
   --max-w: 1180px;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-head: "Space Grotesk", var(--font-body);
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
 }
 
 * { box-sizing: border-box; }
@@ -1031,11 +1032,57 @@ button:focus-visible,
   background: var(--bg-alt);
   border-bottom: 1px solid var(--border);
 }
-.project-hero h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
 .project-hero .meta { color: var(--muted); font-size: 1rem; }
 
 .project-body { padding: 56px 0 96px; }
 .project-body .container { max-width: 860px; }
+
+/* Headings on the project pages read as an editorial case study rather than a
+   product landing page: a serif display face for the titles, and the old
+   wide-tracked uppercase accent kicker demoted to a quiet lowercase label
+   sitting above a hairline rule that opens each section. */
+.project-hero h1,
+.project-section h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.project-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.1rem);
+  line-height: 1.08;
+  margin-bottom: 0.32em;
+}
+
+.project-hero .eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.project-section h2 {
+  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  line-height: 1.22;
+  margin-bottom: 18px;
+}
+
+.project-section .eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
 
 /* The cover now closes the page instead of opening it, so it runs at half
    width and centered -- a closing shot rather than a banner. Released back to
@@ -1056,8 +1103,6 @@ button:focus-visible,
 }
 
 .project-section { margin-bottom: 48px; }
-.project-section .eyebrow { margin-bottom: 6px; }
-.project-section h2 { font-size: 1.5rem; margin-bottom: 16px; }
 .project-section p { color: var(--ink-soft); margin: 0 0 1.1em; font-size: 1.03rem; }
 .project-section p:last-child { margin-bottom: 0; }
 
