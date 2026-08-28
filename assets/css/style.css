@@ -1071,7 +1071,9 @@ button:focus-visible,
 }
 
 .project-section .eyebrow {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   font-family: var(--font-body);
   font-size: clamp(1.4rem, 2.2vw, 1.6rem);
   font-weight: 600;
@@ -1079,8 +1081,12 @@ button:focus-visible,
   text-transform: none;
   color: var(--muted);
   margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
+}
+.project-section .eyebrow::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
 
 /* The cover now closes the page instead of opening it, so it runs at half
