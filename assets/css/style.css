@@ -831,6 +831,9 @@ button:focus-visible,
 /* the NVIDIA asset is a whole certificate rather than a badge, so it needs
    more room than the AWS mark to stay readable */
 .cert-nvidia img { width: 168px; height: 168px; }
+/* the AWS asset carries a wide transparent margin, so the badge itself reads
+   small in the 140px box — scale it up without enlarging the card */
+.cert-aws img { transform: scale(2); }
 .cert-info { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; }
 .cert-card h3 { font-size: 1.05rem; line-height: 1.3; margin: 0; }
 .cert-status {
