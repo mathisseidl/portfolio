@@ -943,6 +943,8 @@ button:focus-visible,
    ========================================================================== */
 .contact-section { background: var(--bg); }
 .contact-section .section-head { margin-bottom: 18px; }
+/* optically align the rounded "C" of the heading with the body text below */
+.contact-section .section-head h2 { margin-left: -0.06em; }
 
 .contact-grid {
   display: grid;
