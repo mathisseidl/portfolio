@@ -1027,7 +1027,7 @@ button:focus-visible,
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px 48px;
   width: 100%;
 }
@@ -1035,8 +1035,8 @@ button:focus-visible,
 .footer-top p { margin: 0; max-width: 42ch; }
 .contact-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px 28px;
+  flex-direction: column;
+  gap: 8px;
 }
 .footer-bottom {
   width: 100%;
