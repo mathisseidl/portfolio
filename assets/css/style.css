@@ -906,7 +906,7 @@ button:focus-visible,
 .stat-line span { color: var(--muted); font-weight: 500; font-size: 0.88rem; }
 
 .utr-card {
-  margin: 50px 0 0;
+  margin: 42px 0 0;
   max-width: 227px;
   border-radius: var(--radius);
   overflow: hidden;
