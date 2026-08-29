@@ -1022,6 +1022,29 @@ button:focus-visible,
 }
 .site-footer a { color: #eceee9; }
 
+/* Project-page footer with a "Let's talk" block */
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 48px;
+  width: 100%;
+}
+.footer-top h2 { margin: 0 0 6px; font-size: 1.15rem; color: #eceee9; }
+.footer-top p { margin: 0; max-width: 42ch; }
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+.footer-bottom {
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 /* ==========================================================================
    Project detail pages
    ========================================================================== */
