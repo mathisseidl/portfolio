@@ -351,6 +351,10 @@ button:focus-visible,
    .subhead-spaced gap used over in Engineering Work. */
 #about .subhead-spaced { margin-top: 30px; }
 
+/* About follows the logo ribbon rather than a plain background break, so it
+   opens tighter than the shared 96px section padding. */
+#about { padding-top: 76px; }
+
 .lang-list {
   list-style: none;
   margin: 0;
