@@ -764,6 +764,10 @@ button:focus-visible,
 
 .card-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg-alt-2); position: relative; }
 .card-media img { width: 100%; height: 100%; object-fit: cover; }
+/* the EBSB card leads with the client logo, not a page screenshot; the file
+   carries its own white margin, so sit it on white and let it breathe */
+.card-media-logo { background: #fff; }
+.card-media-logo img { object-fit: contain; padding: 14px; }
 .card-date {
   position: absolute;
   top: 12px;
