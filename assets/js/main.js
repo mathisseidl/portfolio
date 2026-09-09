@@ -109,6 +109,36 @@ document.addEventListener("DOMContentLoaded", () => {
     videoObserver.observe(tennisFrame);
   }
 
+  /* ------------------------------------------------------------------
+     Logo marquee — hold the scroll speed steady across viewports.
+
+     The animation translates the track by -50%, so its duration sets how
+     long half a track takes, not how fast it moves. The track gets shorter
+     on a phone (smaller gap, smaller logos), which at a fixed duration made
+     the strip crawl. Derive the duration from the measured width instead so
+     the logos always travel --marquee-speed pixels per second.
+     ------------------------------------------------------------------ */
+  const strip = document.querySelector(".logo-strip");
+  const track = strip && strip.querySelector(".marquee-track");
+
+  if (track) {
+    const syncMarqueeSpeed = () => {
+      const speed = parseFloat(
+        getComputedStyle(strip).getPropertyValue("--marquee-speed")
+      );
+      const half = track.scrollWidth / 2;
+      if (!speed || !half) return;
+      strip.style.setProperty("--marquee-duration", half / speed + "s");
+    };
+
+    syncMarqueeSpeed();
+    /* Logo heights drive the track width, so remeasure once they decode. */
+    track.querySelectorAll("img").forEach((img) => {
+      if (!img.complete) img.addEventListener("load", syncMarqueeSpeed, { once: true });
+    });
+    window.addEventListener("resize", syncMarqueeSpeed);
+  }
+
   /* Project demo videos are marked autoplay muted, but the attribute alone
      does not fire in every engine (and never when the tab loads in the
      background). Nudge play() once the data is in, and again when the tab

@@ -276,7 +276,16 @@ button:focus-visible,
 /* ==========================================================================
    Logo strip
    ========================================================================== */
-.logo-strip { padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.logo-strip {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  /* main.js rewrites --marquee-duration from the measured track width so the
+     strip travels at --marquee-speed px/s on every viewport; the fallback in
+     .marquee-track keeps it moving if that never runs. */
+  --marquee-gap: 140px;
+  --marquee-speed: 47;
+}
 
 .marquee {
   overflow: hidden;
@@ -287,10 +296,14 @@ button:focus-visible,
 .marquee-track {
   display: flex;
   align-items: center;
-  gap: 140px;
   width: max-content;
-  animation: marquee-right 26s linear infinite;
+  /* Spacing lives on each item rather than in `gap`. The track holds two
+     identical halves, so translateX(-50%) only lands on a seam if every logo
+     owns a trailing gap. With `gap` there are 8 logos but only 7 gaps between
+     them, so -50% fell half a gap short and the strip jumped once per loop. */
+  animation: marquee-right var(--marquee-duration, 26s) linear infinite;
 }
+.marquee-track > * { margin-right: var(--marquee-gap); }
 .marquee-track a { display: block; flex-shrink: 0; opacity: 0.8; transition: opacity 0.15s ease; }
 .marquee-track a:hover { opacity: 1; }
 .marquee-track img { height: 52px; width: auto; object-fit: contain; }
@@ -298,6 +311,20 @@ button:focus-visible,
 .marquee-track img.logo-bu { height: 78px; }
 .marquee-track img.logo-siemens { height: 62px; }
 .marquee-track img.logo-amazon { height: 47px; transform: translateY(9px); }
+
+/* A 140px gap and full-height logos are wider than a phone, which left one
+   logo on screen at a time. Tighten both so at least a couple stay in view. */
+@media (max-width: 860px) {
+  .logo-strip { --marquee-gap: 96px; }
+}
+@media (max-width: 640px) {
+  .logo-strip { --marquee-gap: 48px; padding: 12px 0; }
+  .marquee-track img { height: 38px; }
+  .marquee-track img.logo-ebsb { height: 70px; }
+  .marquee-track img.logo-bu { height: 56px; }
+  .marquee-track img.logo-siemens { height: 45px; }
+  .marquee-track img.logo-amazon { height: 34px; transform: translateY(7px); }
+}
 
 @keyframes marquee-right {
   from { transform: translateX(-50%); }
