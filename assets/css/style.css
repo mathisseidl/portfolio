@@ -324,6 +324,9 @@ button:focus-visible,
   .logo-strip { --marquee-gap: 48px; padding: 12px 0; --marquee-speed: 47; }
   .marquee-track img { height: 38px; }
   .marquee-track img.logo-ebsb { height: 52px; }
+  /* the round BU seal crowds the EBSB crest at this gap; give EBSB a little
+     more room on its right so it sits off the seal */
+  .marquee-track a:has(.logo-ebsb) { margin-right: 60px; }
   .marquee-track img.logo-bu { height: 56px; }
   .marquee-track img.logo-siemens { height: 45px; }
   .marquee-track img.logo-amazon { height: 34px; transform: translateY(7px); }
