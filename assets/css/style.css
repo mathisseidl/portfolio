@@ -282,9 +282,10 @@ button:focus-visible,
   border-bottom: 1px solid var(--border);
   /* main.js rewrites --marquee-duration from the measured track width so the
      strip travels at --marquee-speed px/s on every viewport; the fallback in
-     .marquee-track keeps it moving if that never runs. */
+     .marquee-track keeps it moving if that never runs. The phone speed reads
+     fine; wider viewports get a slower value so the strip doesn't race. */
   --marquee-gap: 140px;
-  --marquee-speed: 47;
+  --marquee-speed: 39;
 }
 
 .marquee {
@@ -307,7 +308,9 @@ button:focus-visible,
 .marquee-track a { display: block; flex-shrink: 0; opacity: 0.8; transition: opacity 0.15s ease; }
 .marquee-track a:hover { opacity: 1; }
 .marquee-track img { height: 52px; width: auto; object-fit: contain; }
-.marquee-track img.logo-ebsb { height: 110px; }
+/* logo-ebsb.png is cropped tight to the crest, so it needs no height bonus to
+   compensate for baked-in whitespace — size it by eye against its neighbours. */
+.marquee-track img.logo-ebsb { height: 74px; }
 .marquee-track img.logo-bu { height: 78px; }
 .marquee-track img.logo-siemens { height: 62px; }
 .marquee-track img.logo-amazon { height: 47px; transform: translateY(9px); }
@@ -318,9 +321,9 @@ button:focus-visible,
   .logo-strip { --marquee-gap: 96px; }
 }
 @media (max-width: 640px) {
-  .logo-strip { --marquee-gap: 48px; padding: 12px 0; }
+  .logo-strip { --marquee-gap: 48px; padding: 12px 0; --marquee-speed: 47; }
   .marquee-track img { height: 38px; }
-  .marquee-track img.logo-ebsb { height: 77px; }
+  .marquee-track img.logo-ebsb { height: 52px; }
   .marquee-track img.logo-bu { height: 56px; }
   .marquee-track img.logo-siemens { height: 45px; }
   .marquee-track img.logo-amazon { height: 34px; transform: translateY(7px); }
@@ -553,17 +556,9 @@ button:focus-visible,
   max-height: 28px;
   object-fit: contain;
 }
-/* the EBSB file carries a wide white margin; crop it back to the mark so the
-   square logo carries the same weight as the two wordmarks */
-.tl-crop-ebsb { position: relative; overflow: hidden; }
-.tl-crop-ebsb img {
-  position: absolute;
-  width: 47.22px;
-  max-width: none;
-  max-height: none;
-  left: 8.21px;
-  top: -4.72px;
-}
+/* the EBSB mark is square where its neighbours are wordmarks; let it run a
+   little taller so it carries the same visual weight in the pin */
+.tl-logo-ebsb img { max-height: 34px; }
 .tl-pin-card small { font-size: 0.66rem; color: var(--muted); }
 .tl-pin-stem {
   width: 2px;
@@ -791,10 +786,10 @@ button:focus-visible,
 
 .card-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg-alt-2); position: relative; }
 .card-media img { width: 100%; height: 100%; object-fit: cover; }
-/* the EBSB card leads with the client logo, not a page screenshot; the file
-   carries its own white margin, so sit it on white and let it breathe */
+/* the EBSB card leads with the client logo, not a page screenshot; sit it on
+   white and pad it well in so the tight-cropped mark still has room to breathe */
 .card-media-logo { background: #fff; }
-.card-media-logo img { object-fit: contain; padding: 14px; }
+.card-media-logo img { object-fit: contain; padding: 17% 21%; }
 .card-date {
   position: absolute;
   top: 12px;
