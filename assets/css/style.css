@@ -494,8 +494,10 @@ button:focus-visible,
 }
 .tl-endcap-start {
   left: 0;
-  font-size: 0.66rem;
+  font-size: 0.74rem;
   font-weight: 500;
+  color: var(--accent);
+  opacity: 0.75;
 }
 .tl-endcap-end {
   left: 100%;
