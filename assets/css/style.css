@@ -494,7 +494,8 @@ button:focus-visible,
 }
 .tl-endcap-start {
   left: 0;
-  letter-spacing: 0.12em;
+  font-size: 0.66rem;
+  font-weight: 500;
 }
 .tl-endcap-end {
   left: 100%;
