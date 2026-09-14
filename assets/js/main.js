@@ -99,7 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            tennisFrame.src = baseSrc + (baseSrc.includes("?") ? "&" : "?") + "autoplay=1&mute=1";
+            tennisFrame.src =
+              baseSrc +
+              (baseSrc.includes("?") ? "&" : "?") +
+              "autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&playsinline=1";
             videoObserver.unobserve(tennisFrame);
           }
         });
