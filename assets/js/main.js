@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const tennisFrame = document.querySelector(".athletics-video iframe");
   if (tennisFrame && "IntersectionObserver" in window) {
-    const baseSrc = tennisFrame.getAttribute("src");
+    const baseSrc = tennisFrame.dataset.src;
     const videoObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
