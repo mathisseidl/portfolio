@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tennisFrame.src =
               baseSrc +
               (baseSrc.includes("?") ? "&" : "?") +
-              "autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&playsinline=1";
+              "autoplay=1&mute=1&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0&playsinline=1";
             videoObserver.unobserve(tennisFrame);
           }
         });
