@@ -102,20 +102,24 @@ document.addEventListener("DOMContentLoaded", () => {
             tennisFrame.src =
               baseSrc +
               (baseSrc.includes("?") ? "&" : "?") +
-              "autoplay=1&mute=1&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0&playsinline=1&enablejsapi=1";
+              "autoplay=1&mute=1&start=63&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0&playsinline=1&enablejsapi=1";
 
-            /* cc_load_policy=0 doesn't stop auto-generated captions that the
-               video forces on. Explicitly unload the captions module over
-               the player's postMessage API once it's ready, retrying a few
-               times since captions can attach a moment after playback starts. */
-            const disableCaptions = () => {
-              tennisFrame.contentWindow.postMessage(
-                JSON.stringify({ event: "command", func: "unloadModule", args: ["captions"] }),
-                "*"
-              );
+            /* Browsers only allow autoplay reliably when it starts muted, so
+               the src above still mutes it. Once the player is up, unmute it
+               to a low volume and unload the forced captions module over its
+               postMessage API — retrying a few times since the player can
+               take a moment to start accepting commands. */
+            const sendPlayerCommand = (func, args = []) => {
+              tennisFrame.contentWindow.postMessage(JSON.stringify({ event: "command", func, args }), "*");
             };
             tennisFrame.addEventListener("load", () => {
-              [0, 500, 1500, 3000].forEach((delay) => setTimeout(disableCaptions, delay));
+              [0, 500, 1500, 3000].forEach((delay) =>
+                setTimeout(() => {
+                  sendPlayerCommand("unloadModule", ["captions"]);
+                  sendPlayerCommand("unMute");
+                  sendPlayerCommand("setVolume", [20]);
+                }, delay)
+              );
             });
 
             videoObserver.unobserve(tennisFrame);
