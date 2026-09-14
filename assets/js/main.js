@@ -102,7 +102,22 @@ document.addEventListener("DOMContentLoaded", () => {
             tennisFrame.src =
               baseSrc +
               (baseSrc.includes("?") ? "&" : "?") +
-              "autoplay=1&mute=1&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0&playsinline=1";
+              "autoplay=1&mute=1&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0&playsinline=1&enablejsapi=1";
+
+            /* cc_load_policy=0 doesn't stop auto-generated captions that the
+               video forces on. Explicitly unload the captions module over
+               the player's postMessage API once it's ready, retrying a few
+               times since captions can attach a moment after playback starts. */
+            const disableCaptions = () => {
+              tennisFrame.contentWindow.postMessage(
+                JSON.stringify({ event: "command", func: "unloadModule", args: ["captions"] }),
+                "*"
+              );
+            };
+            tennisFrame.addEventListener("load", () => {
+              [0, 500, 1500, 3000].forEach((delay) => setTimeout(disableCaptions, delay));
+            });
+
             videoObserver.unobserve(tennisFrame);
           }
         });
