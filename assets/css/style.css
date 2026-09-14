@@ -509,7 +509,7 @@ button:focus-visible,
   color: var(--accent);
   z-index: 8;
 }
-.tl-endcap-end small { color: var(--accent); opacity: 0.75; }
+.tl-endcap-end small { color: var(--accent); opacity: 0.75; font-size: 0.74rem; }
 
 .tl-pin {
   position: absolute;
