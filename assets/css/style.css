@@ -520,18 +520,6 @@ button:focus-visible,
   flex-direction: column;
   align-items: center;
 }
-.tl-pin::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -8px;
-  width: 8px;
-  height: 8px;
-  margin-left: -4px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--accent);
-}
 /* Every pin is the same box: a fixed logo slot over one line of text, so the
    three cards match no matter how differently shaped the logos are. */
 .tl-pin-card {
