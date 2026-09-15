@@ -104,23 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
               (baseSrc.includes("?") ? "&" : "?") +
               "autoplay=1&mute=1&start=63&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0&playsinline=1&enablejsapi=1";
 
-            /* Browsers only allow autoplay reliably when it starts muted, so
-               the src above still mutes it. Once the player is up, unmute it
-               to a low volume and unload the forced captions module over its
-               postMessage API — retrying a few times since the player can
-               take a moment to start accepting commands. */
-            const sendPlayerCommand = (func, args = []) => {
-              tennisFrame.contentWindow.postMessage(JSON.stringify({ event: "command", func, args }), "*");
-            };
-            tennisFrame.addEventListener("load", () => {
-              [0, 500, 1500, 3000].forEach((delay) =>
-                setTimeout(() => {
-                  sendPlayerCommand("unloadModule", ["captions"]);
-                  sendPlayerCommand("unMute");
-                  sendPlayerCommand("setVolume", [20]);
-                }, delay)
-              );
-            });
+            /* Stay muted — Chrome blocks a script-triggered unMute() with no
+               user gesture behind it (unless the visitor's browser profile
+               already has heavy engagement with this site), which was
+               silently halting playback for first-time Chrome visitors.
+               Viewers can unmute themselves via the player's own controls. */
 
             videoObserver.unobserve(tennisFrame);
           }
