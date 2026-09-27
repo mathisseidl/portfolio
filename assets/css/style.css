@@ -810,8 +810,6 @@ button:focus-visible,
   gap: 6px;
 }
 .card-link.disabled { color: var(--muted); }
-.card-links { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.card-links .card-link { margin-top: 0; }
 
 /* Internship cards: same frame as every other card, only the kicker differs. */
 .card-featured {
