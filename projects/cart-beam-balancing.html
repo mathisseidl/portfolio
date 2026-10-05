@@ -69,6 +69,11 @@
         <p class="eyebrow">Simulation</p>
         <h2>Modeling tipping acceleration in SolidWorks</h2>
         <p>The ultimate objective was to minimize the time required to transport the bar. To do so, we first simulated multiple design concepts in SolidWorks. Initially, we simulated the multibody system without wheels to get a sense of the maximum acceleration the cart could handle. Basic rectangular shapes were used for the track, cart, and prisms, assembled with one degree of freedom that dropped to zero once a motor was introduced.</p>
+        <div class="video-frame-native">
+          <video controls autoplay muted loop playsinline preload="auto" poster="../assets/img/projects/cart/sim-tipping-poster.jpg" aria-label="SolidWorks motion study of the prism tipping on the wheel-less cart">
+            <source src="../assets/video/cart-sim-tipping.mp4" type="video/mp4" />
+          </video>
+        </div>
         <p>Using the motion analysis feature in SolidWorks, we generated both an acceleration plot and a reaction force plot to analyze the system's behavior.</p>
         <div class="figure-row">
           <img src="../assets/img/projects/cart/plot-acceleration.jpg" alt="Acceleration plot from SolidWorks motion analysis" />
@@ -78,6 +83,11 @@
         <p>To make sure these results actually made sense, we compared them to the theoretical calculations that we got from a Free-Body Diagram. By solving for when the net moment about the tipping point equals zero, we got a tipping acceleration of 0.8175 m/s&sup2;. The simulated value aligns within 2% of the theoretical value, validating the accuracy of the model.</p>
         <p>The simulation was then repeated with the prism tilted at 45 degrees, which shifted the base distribution along the tilting axis and noticeably changed the results, giving a higher maximum acceleration of 1.152 m/s&sup2; at 0.96 seconds — confirming that the angled orientation allowed the cart to move faster before tipping became a concern.</p>
         <p>We then introduced wheels into the simulation, with each group member modeling a different size ranging from 1 to 4 inches. The goal was to bring the reaction force of the bar as close to zero as possible, which larger wheels achieved well. However, we opted for a more conservative choice to avoid the jerk that comes with bigger wheels. Taking everything into account, we went with the rotated prism and 3 inch wheels for our final design, giving us the best balance between speed and stability for transporting the bar.</p>
+        <div class="video-frame-native">
+          <video controls autoplay muted loop playsinline preload="auto" poster="../assets/img/projects/cart/sim-wheels-poster.jpg" aria-label="SolidWorks simulation of the wheeled cart carrying the bar along the track">
+            <source src="../assets/video/cart-sim-wheels.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="resource-links">
           <a class="btn btn-outline" href="../assets/files/Cart-SolidWorks.zip">SolidWorks Zip File</a>
         </div>
