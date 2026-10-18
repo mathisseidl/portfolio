@@ -783,6 +783,10 @@ button:focus-visible,
    white and pad it well in so the tight-cropped mark still has room to breathe */
 .card-media-logo { background: #fff; }
 .card-media-logo img { object-fit: contain; padding: 17% 21%; }
+/* portrait project photos: show the whole shot inside the frame; the card
+   sets a backdrop that continues the photo edges */
+.card-media-fit a { position: relative; }
+.card-media-fit img { object-fit: contain; }
 .card-date {
   position: absolute;
   top: 12px;
@@ -795,6 +799,7 @@ button:focus-visible,
   text-transform: uppercase;
   padding: 4px 10px;
   border-radius: 999px;
+  z-index: 1;
 }
 
 .card-body { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
