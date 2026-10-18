@@ -1198,6 +1198,9 @@ button:focus-visible,
   gap: 16px;
   margin: 24px 0;
 }
+.figure-row-3 { grid-template-columns: repeat(3, 1fr); }
+/* Mixed aspect ratios: fill equal boxes rather than letterboxing */
+.figure-row-3 img { height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
 @media (max-width: 640px) { .figure-row { grid-template-columns: 1fr; } }
 .figure-row img { border-radius: var(--radius-sm); box-shadow: var(--shadow); width: 100%; height: 100%; object-fit: contain; background: var(--bg-alt); }
 /* A captioned shot in a row spans two subgrid rows (image, caption), so its
