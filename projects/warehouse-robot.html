@@ -64,17 +64,19 @@
         <h2>Mailroom sorting robot</h2>
         <p>We built a 6-DOF robotic arm that picks up three different sized boxes that should resemble packages. The arm measures the packages' size, and drops them into predefined location based on the boxes' size it detects. The robot runs on a prismatic rail joint plus five revolute joints, giving it reach and mobility. The whole system was designed, built, and programmed from scratch on a $100 budget.</p>
         <figure class="project-figure">
-          <img src="../assets/img/projects/warehouse-robot/objective-diagram.png" alt="Link length diagram: y1=13cm, z2=3cm, x3=18cm, x4=15cm, y5=9cm, z6=12.5cm" />
-          <figcaption>y1=13cm &middot; z2=3cm &middot; x3=18cm &middot; x4=15cm &middot; y5=9cm &middot; z6=12.5cm</figcaption>
+          <img src="../assets/img/projects/warehouse-robot/objective-diagram.png" alt="ESP32 microcontroller board" />
         </figure>
       </section>
 
       <section class="project-section">
         <p class="eyebrow">Design</p>
         <h2>DH Parameters &amp; CAD</h2>
-        <p>We modeled the robot using modified Denavit-Hartenberg parameters, assigning a coordinate frame to each of the six joints. Each link length was carefully chosen to work within our budget and keep the arm stable under load. After selecting 20 Nm torque servos for our joints, we revised the dimensions so the robot can reliably handle packages up to 200 g and ended up with link lengths of 18cm, 15cm, 9cm, and an end effector of 12.5cm. After creating the frame sketch, I used SolidWorks to model the links and 3D printed those on a Bambu 3D printer.</p>
+        <p>We modeled the robot using modified Denavit-Hartenberg parameters, assigning a coordinate frame to each of the six joints. Each link length was carefully chosen to work within our budget and keep the arm stable under load. After selecting 20 kg&middot;cm and 30 kg&middot;cm torque servos for our joints, we revised the dimensions so the robot can reliably handle packages up to 200 g and ended up with link lengths of 18cm, 15cm, 9cm, and an end effector of 12.5cm. After creating the frame sketch, I used SolidWorks to model the links and 3D printed those on a Bambu 3D printer.</p>
         <div class="figure-row">
-          <img src="../assets/img/projects/warehouse-robot/design-diagram-1.png" alt="DH parameter coordinate frames diagram" />
+          <figure>
+            <img src="../assets/img/projects/warehouse-robot/design-diagram-1.png" alt="DH parameter coordinate frames diagram" />
+            <figcaption>y1=13cm &middot; z2=3cm &middot; x3=18cm &middot; x4=15cm &middot; y5=9cm &middot; z6=12.5cm</figcaption>
+          </figure>
           <img src="../assets/img/projects/warehouse-robot/design-diagram-2.png" alt="Robot arm CAD model" />
         </div>
       </section>
