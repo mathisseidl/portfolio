@@ -1207,6 +1207,8 @@ button:focus-visible,
 .figure-row:has(figure) { row-gap: 0; }
 .figure-row figure { margin: 0; display: grid; grid-row: span 2; grid-template-rows: subgrid; }
 .figure-row:has(figure) img { height: auto; align-self: stretch; }
+/* Fill the stretched box (trimming the sides) instead of letterboxing it */
+.figure-row:has(figure) > img { object-fit: cover; }
 .figure-row figcaption { font-size: 0.85rem; color: var(--muted); margin: 0; padding-top: 8px; text-align: center; }
 @media (max-width: 640px) {
   .figure-row:has(figure) { row-gap: 16px; }
