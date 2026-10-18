@@ -1200,10 +1200,18 @@ button:focus-visible,
 }
 @media (max-width: 640px) { .figure-row { grid-template-columns: 1fr; } }
 .figure-row img { border-radius: var(--radius-sm); box-shadow: var(--shadow); width: 100%; height: 100%; object-fit: contain; background: var(--bg-alt); }
-/* A captioned shot in a row: the image takes what's left after the caption */
-.figure-row figure { margin: 0; display: flex; flex-direction: column; }
-.figure-row figure img { flex: 1; min-height: 0; }
-.figure-row figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; text-align: center; }
+/* A captioned shot in a row spans two subgrid rows (image, caption), so its
+   uncaptioned neighbour sits in the image row only and matches its height.
+   The row gap must be 0 on both grids: a subgrid gap that differs from its
+   parent's pads the edge items by half the difference and the rows drift. */
+.figure-row:has(figure) { row-gap: 0; }
+.figure-row figure { margin: 0; display: grid; grid-row: span 2; grid-template-rows: subgrid; }
+.figure-row:has(figure) img { height: auto; align-self: stretch; }
+.figure-row figcaption { font-size: 0.85rem; color: var(--muted); margin: 0; padding-top: 8px; text-align: center; }
+@media (max-width: 640px) {
+  .figure-row:has(figure) { row-gap: 16px; }
+  .figure-row figure { display: block; grid-row: auto; }
+}
 
 .resource-links { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
 
