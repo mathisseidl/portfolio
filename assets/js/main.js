@@ -1,3 +1,35 @@
+/* ------------------------------------------------------------------
+   Project pages: hold back the images below the demo video until it
+   starts playing. Chrome fetches loading="lazy" images that sit within
+   ~1250-2500px of the viewport straight away, so on a short page they
+   download alongside the video and can delay its start by seconds.
+   Runs before first layout (this script sits at the end of <body>).
+   Released on the video's first frame, on scroll, or after 3s.
+   ------------------------------------------------------------------ */
+(() => {
+  const video = document.querySelector(".video-frame-native video[autoplay]");
+  if (!video) return;
+
+  const held = Array.from(document.querySelectorAll("main img[loading='lazy']")).filter(
+    (img) => video.compareDocumentPosition(img) & Node.DOCUMENT_POSITION_FOLLOWING
+  );
+  held.forEach((img) => {
+    img.dataset.heldSrc = img.getAttribute("src");
+    img.removeAttribute("src");
+  });
+
+  let released = false;
+  const release = () => {
+    if (released) return;
+    released = true;
+    held.forEach((img) => img.setAttribute("src", img.dataset.heldSrc));
+  };
+  video.addEventListener("playing", release, { once: true });
+  video.addEventListener("error", release, { once: true });
+  window.addEventListener("scroll", release, { once: true, passive: true });
+  setTimeout(release, 3000);
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".main-nav");
