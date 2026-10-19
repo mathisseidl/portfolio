@@ -81,7 +81,7 @@
         <p class="eyebrow">Z-Axis</p>
         <h2>End effector</h2>
         <p>Our Z-axis end effector is rack-and-pinion inspired, responsible for picking up and dropping the game chips. The pinion is press-fitted onto the shaft of the NEMA 14 stepper motor and drives the rack linearly. A magnet mounted on the front of the rack collects the chips, which we glued with metal pieces for magnetic adhesion.</p>
-        <p>The chip release mechanism required significant troubleshooting. Our initial approach used a linear actuator to collide the chip against a back wall upon power-off, releasing it into the board — that was unsuccessful, so we attached a screw onto the magnet to lower the magnetic field, but the chip still wouldn't fall off. Ultimately, we realized we could just disregard the linear actuator completely and place the chip into the slit enough so that if you reverse the rack, the chip naturally falls in.</p>
+        <p>The chip release mechanism required significant troubleshooting. Our initial approach used a linear actuator to collide the chip against a back wall upon power-off, releasing it into the board. That was unsuccessful, so we attached a screw onto the magnet to lower the magnetic field, but the chip still wouldn't fall off. Ultimately, we realized we could just disregard the linear actuator completely and place the chip into the slit enough so that if you reverse the rack, the chip naturally falls in.</p>
         <img loading="lazy" decoding="async" src="../assets/img/projects/connect4/end-effector.jpg" alt="Rack-and-pinion end effector" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
       </section>
 
@@ -105,7 +105,7 @@
       <section class="project-section">
         <p class="eyebrow">Results</p>
         <h2>Smart wiring, solid performance</h2>
-        <p>Overall the system performed well. The motors ran smoothly, the belts held up without any issues, and the carriages slid cleanly along the beams thanks to careful dimensioning during the design phase. Electrically the system ran flawlessly as long as the motors stayed within a certain speed threshold — each cycle ran between 10 and 20 seconds from pickup to drop off. The only area for improvement was chip accuracy, which sat at 85% per game. Chips would slightly twist in their holder, meaning the magnet never grabbed the metal piece from the exact same spot, occasionally throwing off the drop.</p>
+        <p>Overall the system performed well. The motors ran smoothly, the belts held up without any issues, and the carriages slid cleanly along the beams thanks to careful dimensioning during the design phase. Electrically the system ran flawlessly as long as the motors stayed within a certain speed threshold, and each cycle ran between 10 and 20 seconds from pickup to drop off. The only area for improvement was chip accuracy, which sat at 85% per game. Chips would slightly twist in their holder, meaning the magnet never grabbed the metal piece from the exact same spot, occasionally throwing off the drop.</p>
         <img loading="lazy" decoding="async" src="../assets/img/projects/connect4/group-photo.jpg" alt="Team photo with the finished Connect 4 device" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
       </section>
 
