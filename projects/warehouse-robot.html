@@ -64,7 +64,7 @@
         <h2>Mailroom sorting robot</h2>
         <p>We built a 6-DOF robotic arm that picks up three different sized boxes that should resemble packages. The arm measures the packages' size, and drops them into predefined location based on the boxes' size it detects. The robot runs on a prismatic rail joint plus five revolute joints, giving it reach and mobility. The whole system was designed, built, and programmed from scratch on a $100 budget.</p>
         <figure class="project-figure">
-          <img src="../assets/img/projects/warehouse-robot/objective-diagram.png" alt="ESP32 microcontroller board" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/objective-diagram.png" alt="ESP32 microcontroller board" />
         </figure>
       </section>
 
@@ -74,10 +74,10 @@
         <p>We modeled the robot using modified Denavit-Hartenberg parameters, assigning a coordinate frame to each of the six joints. Each link length was carefully chosen to work within our budget and keep the arm stable under load. After selecting 20 kg&middot;cm and 30 kg&middot;cm torque servos for our joints, we revised the dimensions so the robot can reliably handle packages up to 200 g and ended up with link lengths of 18cm, 15cm, 9cm, and an end effector of 12.5cm. After creating the frame sketch, I used SolidWorks to model the links and 3D printed those on a Bambu 3D printer.</p>
         <div class="figure-row">
           <figure>
-            <img src="../assets/img/projects/warehouse-robot/design-diagram-1.png?v=2" alt="DH parameter coordinate frames diagram" />
+            <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/design-diagram-1.png?v=2" alt="DH parameter coordinate frames diagram" />
             <figcaption>y1=13cm &middot; z2=3cm &middot; x3=18cm &middot; x4=15cm &middot; y5=9cm &middot; z6=12.5cm</figcaption>
           </figure>
-          <img src="../assets/img/projects/warehouse-robot/design-diagram-2.png?v=2" alt="Robot arm CAD model" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/design-diagram-2.png?v=2" alt="Robot arm CAD model" />
         </div>
       </section>
 
@@ -86,8 +86,8 @@
         <h2>Motors &amp; Microcontroller</h2>
         <p>Five servo motors drive the revolute joints, one of them with a built-in closed-loop PID controller used on the gripper to track its movement. A NEMA 17 stepper motor moves the entire arm along the prismatic rail. An ESP32 microcontroller ties everything together, sending PWM signals to every joint simultaneously. To make motion look natural, we implemented sinusoidal easing so the arm accelerates and decelerates smoothly on every move. All logic — from picking to sorting to returning home — runs autonomously once the trigger button is pressed. The only human interaction is giving the gripper the package and giving support to the servo that carries the largest load because it got worn down from all the testing.</p>
         <div class="figure-row">
-          <img src="../assets/img/projects/warehouse-robot/servo-diagram.png" alt="Servo motor diagram" />
-          <img src="../assets/img/projects/warehouse-robot/hardware-photo.png" alt="Hardware assembly photo" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/servo-diagram.png" alt="Servo motor diagram" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/hardware-photo.png" alt="Hardware assembly photo" />
         </div>
       </section>
 
@@ -96,8 +96,8 @@
         <h2>Force &amp; Angle feedback</h2>
         <p>When the gripper closes around the package, a force sensor on the finger detects the moment of contact. The ESP32 reads that signal and immediately stops the gripper which locks the box in place. Once the gripper stops closing, a built-in potentiometer in the gripper's motor reads the gripper's angle. A simple formula converts that angle into a width in centimeters, revealing the package size. The code then uses that measurement to decide which of the three pre-defined locations to deliver to.</p>
         <div class="figure-row">
-          <img src="../assets/img/projects/warehouse-robot/fsr-diagram.png" alt="Force sensitive resistor diagram" />
-          <img src="../assets/img/projects/warehouse-robot/sensing-diagram.png" alt="Sensing system diagram" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/fsr-diagram.png" alt="Force sensitive resistor diagram" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/sensing-diagram.png" alt="Sensing system diagram" />
         </div>
       </section>
 
@@ -106,7 +106,7 @@
         <h2>Simulating the Robot</h2>
         <p>We used MATLAB's Robotics Toolbox throughout the testing phase to model and validate the arm's motion. We solved inverse kinematics at each pick and place location, which gave us the exact joint angles to hardcode into the ESP32 through C++. Trajectories were planned in joint space to ensure the arm never passed through a singularity. We identified three singularity conditions, the most intuitive being when two links align in a straight line, effectively eliminating the joint between them. Finally, our joint limits were set to 0-180&deg; for all servos, 270&deg; for the servo responsible for the rack and pinion gripper, and 0-0.5 m for the prismatic rail.</p>
         <figure class="project-figure">
-          <img src="../assets/img/projects/warehouse-robot/kinematics-diagram.png" alt="MATLAB kinematics simulation" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/kinematics-diagram.png" alt="MATLAB kinematics simulation" />
         </figure>
       </section>
 
@@ -115,15 +115,15 @@
         <h2>80% success rate &amp; lessons learned</h2>
         <p>The robot successfully picked and placed packages 4 out of every 5 attempts in live testing. The main failure mode was packages slipping from the gripper, caused by gearbox wear on a joint sitting right on top of the base that introduced jitter throughout the arm. Also, unsecured wiring and a small base that tipped under extreme reaches were also limiting factors. With more budget, stronger actuators and a wider two-rail base frame would directly fix those issues. In future iterations we would also add a camera for QR code scanning, to be able to sort between product types not just package size.</p>
         <div class="figure-row">
-          <img src="../assets/img/projects/warehouse-robot/build-photo.jpg" alt="Completed robot during testing" />
-          <img src="../assets/img/projects/warehouse-robot/team-photo.jpg" alt="Team photo with the robot" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/build-photo.jpg" alt="Completed robot during testing" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/team-photo.jpg" alt="Team photo with the robot" />
         </div>
       </section>
 
       <section class="project-section">
         <p class="eyebrow">Project Image</p>
         <div class="project-cover">
-          <img src="../assets/img/projects/warehouse-robot/hero.jpg" alt="The warehouse sorting robot arm" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/hero.jpg" alt="The warehouse sorting robot arm" />
         </div>
       </section>
 

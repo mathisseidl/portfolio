@@ -65,7 +65,7 @@
         <p>ME310 is BU's instrumentation course, and the final project dropped four of us into a group with one job: track the motion of a vibrating mass using nothing but sound. The rig is a weight on a spring, a collar and plate weighing 114.6 g sitting on top, with a motor that shakes the base through an adjustable knob. An ultrasonic sensor on an aluminum frame looks straight down at the collar and measures how far away it is, over and over, as it bounces.</p>
         <p>Any spring-and-weight system has two numbers that describe how it moves: the rate it bounces at on its own once you let go, called the natural frequency, and how fast that bouncing dies out, called the damping ratio. We had to measure both, and to trust the answers we found each one two separate ways. Then we swept the motor from well below the natural frequency to well above it, mapped how hard the collar swung at each speed, and checked the whole picture against the standard spring-mass-damper equation.</p>
         <figure class="project-figure">
-          <img src="../assets/img/projects/ultrasonic-sensor/apparatus.jpg" alt="The test rig with spring, oscillating collar, drive motor, and the ultrasonic sensor mounted overhead" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/apparatus.jpg" alt="The test rig with spring, oscillating collar, drive motor, and the ultrasonic sensor mounted overhead" />
           <figcaption>The rig. Spring and oscillating collar on the right, drive motor at the bottom, ultrasonic sensor on the frame pointing down at the collar.</figcaption>
         </figure>
       </section>
@@ -78,7 +78,7 @@
         <p>It measures position directly. An accelerometer measures acceleration, and getting position back out of that means integrating twice, with each step letting a small offset grow into drift. The ultrasonic sensor just reports distance.</p>
         <p>It needs no calibration. The distance comes from the speed of sound and a measured time, not from a voltage-to-distance curve we would have to build for every setup.</p>
         <figure class="project-figure">
-          <img src="../assets/img/projects/ultrasonic-sensor/signal-chain.png" alt="Block diagram: ultrasonic sensor to bandpass filter, splitting to oscilloscope and DAQ" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/signal-chain.png" alt="Block diagram: ultrasonic sensor to bandpass filter, splitting to oscilloscope and DAQ" />
           <figcaption>Signal path. The sensor feeds a bandpass filter that splits to the oscilloscope for a live view and the DAQ for recording.</figcaption>
         </figure>
       </section>
@@ -89,8 +89,8 @@
         <p>The sensor measures distance the way a bat does, by timing an echo. It fires a short click of ultrasound, the click bounces off the collar, and the sensor listens for it to return. Half the round-trip time, times the speed of sound (about 343 m/s in a room-temperature lab), is the distance: d = c&Delta;t / 2. On the oscilloscope the two events are easy to see, a tall spike as the click goes out and a smaller one as the echo comes back. Sliding the collar by hand slides that second spike across the screen.</p>
         <p>To keep the signal clean we ran it through a Krohn-Hite bandpass filter set to pass 190 to 210 kHz, a narrow window around the sensor's band, then split it with a T connector to the oscilloscope for a live view and to a National Instruments DAQ logging at 50 kHz. A MATLAB script we adapted picks the outgoing spike and the echo spike out of every cycle, measures the time between them, and turns it into a collar position. Run the motor and those positions trace a clean sine wave.</p>
         <div class="figure-row">
-          <img src="../assets/img/projects/ultrasonic-sensor/pulse-echo.png" alt="Oscilloscope trace showing the transmit pulse and the delayed echo" />
-          <img src="../assets/img/projects/ultrasonic-sensor/raw-voltage.png" alt="Raw DAQ voltage over time with pulse and echo detection thresholds marked" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/pulse-echo.png" alt="Oscilloscope trace showing the transmit pulse and the delayed echo" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/raw-voltage.png" alt="Raw DAQ voltage over time with pulse and echo detection thresholds marked" />
         </div>
         <p class="project-figure-caption" style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:-8px;">Left: the outgoing pulse and its echo on the scope, with the time gap &Delta;t between them. Right: the raw recorded voltage, where the script keeps only the spikes tall enough to count and ignores the noise between them.</p>
       </section>
@@ -107,7 +107,7 @@
         <h2>Two reads on the damping</h2>
         <p>Damping, how quickly the bouncing fades, got the same two-method treatment. The first is the logarithmic decrement: switch the motor off, push the collar down, let go, and watch the swings shrink. How fast they shrink from one peak to the next fixes the damping, here &zeta; = 0.154. The second is the peak magnitude method: at resonance, the height of the response peak by itself pins the damping down, and that gave &zeta; = 0.107 with much tighter error bars, so that is the number we carried forward. A lower value also makes sense. In a fast, steady resonance the stick-slip friction in the collar's bearings drags on the motion less than it does during a slow, hand-released decay.</p>
         <figure class="project-figure">
-          <img src="../assets/img/projects/ultrasonic-sensor/step-response.png" alt="Decaying oscillation after a manual step, with two peaks marked for the logarithmic decrement" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/step-response.png" alt="Decaying oscillation after a manual step, with two peaks marked for the logarithmic decrement" />
           <figcaption>Free decay after a manual push. The two marked peaks feed the logarithmic decrement.</figcaption>
         </figure>
       </section>
@@ -117,7 +117,7 @@
         <h2>Sweeping through resonance</h2>
         <p>With those numbers settled, we ran the real sweep: 13 motor speeds from knob 36 to knob 60, roughly 2 to 3.7 Hz, recording the collar's motion at each. We did it twice, once working the speed up and once working it back down, to see whether the system behaved the same in both directions. The swing grows as the shake speed climbs toward the natural frequency, spikes at knob 44, then shrinks again once the shaking gets too fast for the collar to keep up. Classic resonance.</p>
         <figure class="project-figure">
-          <img src="../assets/img/projects/ultrasonic-sensor/frequency-sweep.png" alt="Grid of collar displacement versus time for every knob setting in the ascending sweep" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/frequency-sweep.png" alt="Grid of collar displacement versus time for every knob setting in the ascending sweep" />
           <figcaption>Collar displacement at every knob setting in the ascending sweep. The peak to peak swing is largest at knob 44 and shrinks on either side.</figcaption>
         </figure>
       </section>
@@ -127,13 +127,13 @@
         <h2>Matching the textbook model</h2>
         <p>The payoff is one plot. For every shake speed we took the magnitude ratio, how far the collar moved divided by how far the base moved, and plotted it against speed for both sweeps. Then we drew the textbook prediction on top, using the natural frequency and damping we had measured (15.9 rad/s and &zeta; = 0.107). The measurements land right on the predicted curve. The collar's biggest swing was 0.2745 m on the way up and 0.2759 m on the way down, a gap under 0.6 percent and well inside our error bars. Off resonance the two sweeps parted by a hair, the fingerprint of the spring's slight stiffening and a little bearing friction, both of which any real rig has.</p>
         <div class="figure-row">
-          <img src="../assets/img/projects/ultrasonic-sensor/magnitude-ratio.png" alt="Measured magnitude ratio for both sweep directions plotted against the theoretical second order curve" />
-          <img src="../assets/img/projects/ultrasonic-sensor/phase-lag.png" alt="Theoretical phase lag versus driving frequency, crossing 90 degrees at the natural frequency" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/magnitude-ratio.png" alt="Measured magnitude ratio for both sweep directions plotted against the theoretical second order curve" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/phase-lag.png" alt="Theoretical phase lag versus driving frequency, crossing 90 degrees at the natural frequency" />
         </div>
         <p class="project-figure-caption" style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:-8px;">Left: the measured magnitude ratio for both sweep directions, against the textbook curve. Right: the phase lag, how far the collar's motion trails the base's, passes through 90 degrees right at the natural frequency.</p>
         <p>The ultrasonic sensor carried the whole measurement on its own. Three things keep it honest: aim it square at the collar; sample fast enough to stay ahead of its 25 Hz pulse rate, so the readings don't alias into a false slower wave; and remember that the speed of sound drifts with room temperature, carrying every distance with it.</p>
         <figure class="project-figure">
-          <img src="../assets/img/projects/ultrasonic-sensor/results-table.png" alt="Summary table of every system parameter with its uncertainty" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/ultrasonic-sensor/results-table.png" alt="Summary table of every system parameter with its uncertainty" />
           <figcaption>Every parameter we pulled out of the system, with its uncertainty.</figcaption>
         </figure>
         <div class="resource-links">
@@ -144,7 +144,7 @@
       <section class="project-section">
         <p class="eyebrow">Project Image</p>
         <div class="project-cover">
-          <img src="../assets/img/thumb-ultrasonic.jpg" alt="Ultrasonic sensor experiment setup" />
+          <img loading="lazy" decoding="async" src="../assets/img/thumb-ultrasonic.jpg" alt="Ultrasonic sensor experiment setup" />
         </div>
       </section>
 
