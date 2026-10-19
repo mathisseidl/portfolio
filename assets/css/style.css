@@ -1201,6 +1201,8 @@ button:focus-visible,
 .figure-row-3 { grid-template-columns: repeat(3, 1fr); }
 /* Mixed aspect ratios: fill equal boxes rather than letterboxing */
 .figure-row-3 img { height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+/* Product cut-outs: square boxes, never cropped */
+.figure-row-products img { aspect-ratio: 1 / 1; object-fit: contain; }
 @media (max-width: 640px) { .figure-row { grid-template-columns: 1fr; } }
 .figure-row img { border-radius: var(--radius-sm); box-shadow: var(--shadow); width: 100%; height: 100%; object-fit: contain; background: var(--bg-alt); }
 /* A captioned shot in a row spans two subgrid rows (image, caption), so its

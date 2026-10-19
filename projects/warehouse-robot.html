@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../assets/css/style.css?v=41" />
+<link rel="stylesheet" href="../assets/css/style.css?v=48" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -63,9 +63,6 @@
         <p class="eyebrow">Objective</p>
         <h2>Mailroom sorting robot</h2>
         <p>We built a 6-DOF robotic arm that picks up three different sized boxes that should resemble packages. The arm measures the packages' size, and drops them into predefined location based on the boxes' size it detects. The robot runs on a prismatic rail joint plus five revolute joints, giving it reach and mobility. The whole system was designed, built, and programmed from scratch on a $100 budget.</p>
-        <figure class="project-figure">
-          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/objective-diagram.png" alt="ESP32 microcontroller board" />
-        </figure>
       </section>
 
       <section class="project-section">
@@ -84,10 +81,11 @@
       <section class="project-section">
         <p class="eyebrow">Hardware</p>
         <h2>Motors &amp; Microcontroller</h2>
-        <p>Five servo motors drive the revolute joints, one of them with a built-in closed-loop PID controller used on the gripper to track its movement. A NEMA 17 stepper motor moves the entire arm along the prismatic rail. An ESP32 microcontroller ties everything together, sending PWM signals to every joint simultaneously. To make motion look natural, we implemented sinusoidal easing so the arm accelerates and decelerates smoothly on every move. All logic, from picking to sorting to returning home, runs autonomously once the trigger button is pressed. The only human interaction is giving the gripper the package and giving support to the servo that carries the largest load because it got worn down from all the testing.</p>
-        <div class="figure-row">
-          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/servo-diagram.png" alt="Servo motor diagram" />
-          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/hardware-photo.png" alt="Hardware assembly photo" />
+        <p>Five RDS3218 servo motors drive the revolute joints, one of them with a built-in closed-loop PID controller used on the gripper to track its movement. A NEMA 17 stepper motor moves the entire arm along the prismatic rail. An ESP32 microcontroller ties everything together, sending PWM signals to every joint simultaneously. To make motion look natural, we implemented sinusoidal easing so the arm accelerates and decelerates smoothly on every move. All logic, from picking to sorting to returning home, runs autonomously once the trigger button is pressed. The only human interaction is giving the gripper the package and giving support to the servo that carries the largest load because it got worn down from all the testing.</p>
+        <div class="figure-row figure-row-3 figure-row-products">
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/servo-diagram.png" alt="RDS3218 servo motor" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/sensing-diagram.png" alt="NEMA 17 stepper motor" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/objective-diagram.png" alt="ESP32 microcontroller board" />
         </div>
       </section>
 
@@ -96,8 +94,8 @@
         <h2>Force &amp; Angle feedback</h2>
         <p>When the gripper closes around the package, a force sensor on the finger detects the moment of contact. The ESP32 reads that signal and immediately stops the gripper which locks the box in place. Once the gripper stops closing, a built-in potentiometer in the gripper's motor reads the gripper's angle. A simple formula converts that angle into a width in centimeters, revealing the package size. The code then uses that measurement to decide which of the three pre-defined locations to deliver to.</p>
         <div class="figure-row">
-          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/fsr-diagram.png" alt="Force sensitive resistor diagram" />
-          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/sensing-diagram.png" alt="Sensing system diagram" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/fsr-diagram.png" alt="Force sensitive resistor" />
+          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/build-photo.jpg" alt="Gripper with the force sensor mounted on the inside of its finger" />
         </div>
       </section>
 
@@ -114,10 +112,7 @@
         <p class="eyebrow">Results</p>
         <h2>80% success rate &amp; lessons learned</h2>
         <p>The robot successfully picked and placed packages 4 out of every 5 attempts in live testing. The main failure mode was packages slipping from the gripper, caused by gearbox wear on a joint sitting right on top of the base that introduced jitter throughout the arm. Also, unsecured wiring and a small base that tipped under extreme reaches were also limiting factors. With more budget, stronger actuators and a wider two-rail base frame would directly fix those issues. In future iterations we would also add a camera for QR code scanning, to be able to sort between product types not just package size.</p>
-        <div class="figure-row">
-          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/build-photo.jpg" alt="Completed robot during testing" />
-          <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/team-photo.jpg" alt="Team photo with the robot" />
-        </div>
+        <img loading="lazy" decoding="async" src="../assets/img/projects/warehouse-robot/team-photo.jpg" alt="Team photo with the robot" style="border-radius:8px;box-shadow:var(--shadow);margin-top:16px;" />
       </section>
 
       <section class="project-section">
