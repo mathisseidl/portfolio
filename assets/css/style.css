@@ -371,11 +371,11 @@ button:focus-visible,
 
 /* ==========================================================================
    Languages (About, above the journey timeline)
-   One grid row per language -- flag, name, six dots -- so each set of dots
-   stays on its own language's line and the three columns align down the
-   list. Filled dots use the timeline's own green so this block and the
-   journey bar below it belong to the same family; the empty dot is a shade
-   darker than that bar's track, which goes too faint to count as a circle.
+   One grid row per language -- flag, name, bar, level word -- so the four
+   columns align down the list. The fill uses the timeline's own green so
+   this block and the journey bar below it belong to the same family; the
+   track is a shade darker than that bar's, which goes too faint here. The
+   bar is decorative (aria-hidden): the level word carries the meaning.
    ========================================================================== */
 /* The Languages spoken heading — and, with it, everything below through the
    journey timeline — sits one body line (~26px) higher than the shared
@@ -395,7 +395,7 @@ button:focus-visible,
 }
 .lang-item {
   display: grid;
-  grid-template-columns: 24px 104px auto;
+  grid-template-columns: 24px 104px minmax(0, 260px) auto;
   align-items: center;
   gap: 0 16px;
 }
@@ -414,24 +414,25 @@ button:focus-visible,
   font-weight: 600;
   color: var(--ink);
 }
-.lang-meter {
-  display: inline-flex;
-  /* Grid blockifies inline-flex, so without this the meter box stretches
-     across the whole column instead of hugging its dots. */
-  justify-self: start;
-  align-items: center;
-  gap: 8px;
-}
-.lang-meter i {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
+.lang-bar {
+  height: 8px;
+  border-radius: 999px;
   background: #d6d2c6;
+  overflow: hidden;
 }
-.lang-meter i.is-on { background: #43836d; }
+.lang-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #43836d;
+}
+.lang-level {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
 
 @media (max-width: 860px) {
-  .lang-item { grid-template-columns: 24px 92px auto; gap: 0 12px; }
+  .lang-item { grid-template-columns: 24px 76px minmax(0, 1fr) auto; gap: 0 12px; }
 }
 
 /* ==========================================================================
