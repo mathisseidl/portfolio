@@ -197,3 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+/* Home page scroll cue: fade the hero's down arrow out as soon as the
+   visitor starts scrolling, and back in if they return to the top. */
+(() => {
+  const cue = document.querySelector(".scroll-cue");
+  if (!cue) return;
+  const update = () => cue.classList.toggle("is-hidden", window.scrollY > 40);
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+})();

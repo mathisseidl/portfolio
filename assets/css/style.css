@@ -1265,3 +1265,37 @@ button:focus-visible,
   left: 0;
   top: 0;
 }
+
+/* ==========================================================================
+   Scroll cue: plain black chevron at the bottom-right of the hero, just
+   above the logo strip, with a small repeating hop.
+   ========================================================================== */
+.hero { position: relative; }
+.hero .scroll-cue-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+.scroll-cue {
+  display: block;
+  color: var(--ink);
+  line-height: 0;
+  padding: 4px;
+  animation: scroll-cue-hop 1.8s ease-in-out infinite;
+}
+.scroll-cue:hover { text-decoration: none; }
+.scroll-cue { transition: opacity 0.3s ease, visibility 0.3s ease; }
+.scroll-cue.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+@keyframes scroll-cue-hop {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(8px); }
+}
+@media (max-width: 860px) {
+  .hero .scroll-cue-row { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue { animation: none; }
+}
