@@ -1163,11 +1163,11 @@ button:focus-visible,
 .project-cover img { width: 100%; display: block; }
 
 /* Smaller cover used above the Objective (half the width of the closing one). */
-.project-cover.project-cover-sm { max-width: 25%; }
+.project-cover.project-cover-sm { max-width: 31.25%; }
 
 @media (max-width: 640px) {
   .project-cover { max-width: 100%; }
-  .project-cover.project-cover-sm { max-width: 50%; }
+  .project-cover.project-cover-sm { max-width: 62.5%; }
 }
 
 .project-section { margin-bottom: 48px; }
